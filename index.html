@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Legend of Zelda: Triforce Music Box Cipher</title>
+    <title>The Legend of Zelda: Ancient Ruins Cipher</title>
     <style>
         body {
-            background-color: #0b0e11;
-            background-image: 
-                radial-gradient(circle at 50% 30%, #1c242d 0%, #080b0e 100%),
-                linear-gradient(rgba(197, 160, 89, 0.02) 1px, transparent 1px);
-            background-size: 100% 100%, 24px 24px;
-            color: #e6dfd5;
+            background-color: #040507;
+            background-image: radial-gradient(circle at 50% 20%, #171c24 0%, #040507 100%);
+            color: #dcd0c0;
             font-family: 'Cinzel', 'Times New Roman', serif, Georgia;
             display: flex;
             flex-direction: column;
@@ -19,163 +16,156 @@
             justify-content: center;
             min-height: 100vh;
             margin: 0;
-            padding: 12px;
+            padding: 15px;
         }
-        .container {
-            border: 4px solid #c5a059;
-            background-color: #141a21;
-            background-image: linear-gradient(180deg, #1b242e 0%, #0f141a 100%);
-            padding: 24px;
-            max-width: 420px;
+        .monument-panel {
+            border: 6px double #d4af37;
+            background-color: #12161c;
+            background-image: linear-gradient(135deg, #1a212b 0%, #0d1015 100%);
+            padding: 26px;
+            max-width: 440px;
             width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 0 35px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(197, 160, 89, 0.2);
+            border-radius: 4px;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.9), inset 0 0 30px rgba(212, 175, 55, 0.15);
             text-align: center;
             box-sizing: border-box;
             position: relative;
         }
-        /* Ancient Zonai / Ruin Corner Carvings */
-        .container::before, .container::after {
-            content: '❖';
+        /* Ancient Corner Carvings */
+        .monument-panel::before, .monument-panel::after {
+            content: '☩';
             position: absolute;
-            color: #4ade80; /* Zonai Glow Green */
-            font-size: 1rem;
-            text-shadow: 0 0 10px #4ade80;
+            color: #d4af37;
+            font-size: 1.2rem;
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
         }
-        .container::before { top: 12px; left: 12px; }
-        .container::after { top: 12px; right: 12px; }
+        .monument-panel::before { top: 10px; left: 10px; }
+        .monument-panel::after { top: 10px; right: 10px; }
 
         h1 {
-            color: #f3e5ab;
-            font-size: 1.15rem;
-            margin-top: 6px;
+            color: #f4e8c1;
+            font-size: 1.2rem;
+            margin-top: 8px;
             margin-bottom: 6px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(243, 229, 171, 0.3);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9);
         }
         .subtitle {
-            color: #4ade80;
+            color: #c29b38;
             font-style: italic;
-            font-size: 0.78rem;
-            margin-bottom: 18px;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
             letter-spacing: 1px;
-            text-shadow: 0 0 8px rgba(74, 222, 128, 0.4);
         }
-        .instructions {
-            background-color: #0d1217;
-            border: 1px solid #3a3022;
-            border-left: 4px solid #c5a059;
-            padding: 12px;
-            font-size: 0.73rem;
+        .parchment-box {
+            background-color: #090b0e;
+            border: 2px solid #3d321f;
+            border-left: 5px solid #d4af37;
+            padding: 14px;
+            font-size: 0.75rem;
             text-align: left;
             margin-bottom: 20px;
-            color: #b8c2cc;
+            color: #bfa888;
             line-height: 1.5;
-            border-radius: 4px;
+            border-radius: 2px;
             font-family: Georgia, serif;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
         }
-        .grid {
+        .stone-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
-        button.note-btn {
-            background-color: #1a222c;
-            border: 2px solid #c5a059;
-            color: #f3e5ab;
-            padding: 14px 4px;
+        button.stone-btn {
+            background-color: #1c2430;
+            border: 2px solid #8c733f;
+            color: #f4e8c1;
+            padding: 16px 4px;
             font-weight: bold;
             font-family: Georgia, serif;
             cursor: pointer;
-            font-size: 0.75rem;
-            border-radius: 4px;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.6), 0 2px 4px rgba(0,0,0,0.4);
-            transition: all 0.15s ease;
+            font-size: 0.78rem;
+            border-radius: 3px;
+            box-shadow: inset 0 0 12px rgba(0,0,0,0.7), 0 4px 6px rgba(0,0,0,0.5);
+            transition: all 0.1s ease;
         }
-        button.note-btn:active, button.note-btn.active {
-            background-color: #4ade80;
-            color: #0b0e11;
-            border-color: #4ade80;
-            box-shadow: 0 0 18px #4ade80, inset 0 0 8px rgba(255,255,255,0.8);
-            transform: scale(0.96);
+        button.stone-btn:active, button.stone-btn.active {
+            background-color: #d4af37;
+            color: #0f1015;
+            border-color: #f4e8c1;
+            box-shadow: 0 0 15px #d4af37, inset 0 0 5px rgba(0,0,0,0.5);
+            transform: translateY(2px);
         }
-        .action-btn {
+        .action-tablet {
             width: 100%;
-            padding: 12px;
+            padding: 13px;
             font-weight: bold;
             font-family: Georgia, serif;
             cursor: pointer;
             margin-bottom: 12px;
-            font-size: 0.78rem;
-            border-radius: 4px;
+            font-size: 0.8rem;
+            border-radius: 3px;
             border: 2px solid;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.4);
         }
-        .play-cyl-btn {
-            background-color: #10261c;
-            border-color: #4ade80;
-            color: #4ade80;
-            box-shadow: inset 0 0 10px rgba(74, 222, 128, 0.2);
+        .play-mech-btn {
+            background-color: #182e22;
+            border-color: #558b2f;
+            color: #a3e635;
         }
-        .play-cyl-btn:hover {
-            background-color: #4ade80;
-            color: #0b0e11;
-            box-shadow: 0 0 15px #4ade80;
+        .play-mech-btn:hover {
+            background-color: #274d38;
         }
-        .reset-btn {
-            background-color: #2b1212;
-            border-color: #e06666;
-            color: #e06666;
-            box-shadow: inset 0 0 10px rgba(224, 102, 102, 0.2);
+        .reset-mech-btn {
+            background-color: #381515;
+            border-color: #991b1b;
+            color: #fca5a5;
         }
-        .reset-btn:hover {
-            background-color: #e06666;
-            color: #0b0e11;
-            box-shadow: 0 0 15px #e06666;
+        .reset-mech-btn:hover {
+            background-color: #581c1c;
         }
         select {
             width: 100%;
-            padding: 12px;
-            background-color: #1a222c;
-            color: #f3e5ab;
-            border: 2px solid #c5a059;
-            border-radius: 4px;
+            padding: 13px;
+            background-color: #1c2430;
+            color: #f4e8c1;
+            border: 2px solid #8c733f;
+            border-radius: 3px;
             font-family: Georgia, serif;
-            font-size: 0.78rem;
-            margin-bottom: 18px;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
             cursor: pointer;
             text-align: center;
             box-shadow: inset 0 0 8px rgba(0,0,0,0.6);
         }
         select:focus {
             outline: none;
-            border-color: #4ade80;
-            box-shadow: 0 0 10px rgba(74, 222, 128, 0.4);
+            border-color: #d4af37;
         }
-        #status-message {
-            font-size: 0.74rem;
-            color: #4ade80;
-            min-height: 42px;
+        #status-display {
+            font-size: 0.76rem;
+            color: #c29b38;
+            min-height: 45px;
             line-height: 1.4;
             margin-top: 5px;
-            text-shadow: 0 0 6px rgba(74, 222, 128, 0.3);
             font-family: Georgia, serif;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
         }
-        #coords-box {
+        #vault-box {
             display: none;
-            margin-top: 16px;
-            padding: 14px;
-            background-color: #122118;
-            color: #f3e5ab;
+            margin-top: 18px;
+            padding: 16px;
+            background-color: #17261c;
+            color: #f4e8c1;
             font-weight: bold;
-            border: 2px solid #4ade80;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            box-shadow: 0 0 25px rgba(74, 222, 128, 0.35), inset 0 0 10px rgba(74, 222, 128, 0.2);
+            border: 2px solid #558b2f;
+            border-radius: 3px;
+            font-size: 0.85rem;
+            box-shadow: 0 0 25px rgba(85, 139, 47, 0.4), inset 0 0 10px rgba(85, 139, 47, 0.2);
             letter-spacing: 1px;
             font-family: Georgia, serif;
         }
@@ -183,25 +173,25 @@
 </head>
 <body>
 
-<div class="container">
-    <h1>❖ ANCIENT RUINS MUSIC BOX ❖</h1>
+<div class="monument-panel">
+    <h1>☩ ANCIENT RUINS MUSIC BOX ☩</h1>
     <div class="subtitle">"Unearth the sacred notes of the Royal Family..."</div>
 
-    <div class="instructions">
-        <strong>Field Explorer Directive:</strong> Listen to the stone mechanism's full melody loop. Input the precise 6-note sequence (<strong style="color:#f3e5ab;">4 - 5 - 6 - 4 - 5 - 6</strong>), then select the matching archive melody to unearth the hidden cache coordinates.
+    <div class="parchment-box">
+        <strong>Explorer's Directive:</strong> Listen to the stone mechanism's full melody loop. Input the precise 6-note sequence (<strong style="color:#f4e8c1;">4 - 5 - 6 - 4 - 5 - 6</strong>), then select the matching archive melody to unearth the hidden cache coordinates.
     </div>
 
-    <div class="grid">
-        <button class="note-btn" onclick="handleNotePress(1)">NOTE 1</button>
-        <button class="note-btn" onclick="handleNotePress(2)">NOTE 2</button>
-        <button class="note-btn" onclick="handleNotePress(3)">NOTE 3</button>
-        <button class="note-btn" onclick="handleNotePress(4)">NOTE 4</button>
-        <button class="note-btn" onclick="handleNotePress(5)">NOTE 5</button>
-        <button class="note-btn" onclick="handleNotePress(6)">NOTE 6</button>
+    <div class="stone-grid">
+        <button class="stone-btn" onclick="handleNotePress(1)">SLAB 1</button>
+        <button class="stone-btn" onclick="handleNotePress(2)">SLAB 2</button>
+        <button class="stone-btn" onclick="handleNotePress(3)">SLAB 3</button>
+        <button class="stone-btn" onclick="handleNotePress(4)">SLAB 4</button>
+        <button class="stone-btn" onclick="handleNotePress(5)">SLAB 5</button>
+        <button class="stone-btn" onclick="handleNotePress(6)">SLAB 6</button>
     </div>
 
-    <button class="action-btn play-cyl-btn" onclick="playCylinderMelody()">▶ PLAY 6-NOTE RUIN MECHANISM</button>
-    <button class="action-btn reset-btn" onclick="resetCylinder()">↺ RESET MECHANISM</button>
+    <button class="action-tablet play-mech-btn" onclick="playCylinderMelody()">▶ ACTIVATE STONE MECHANISM</button>
+    <button class="action-tablet reset-mech-btn" onclick="resetCylinder()">↺ RESET MECHANISM</button>
 
     <select id="melody-dropdown" onchange="checkDropdownSelection()">
         <option value="">-- SELECT ANCIENT ARCHIVE MATCH --</option>
@@ -211,22 +201,35 @@
         <option value="storm">Song of Storms</option>
     </select>
 
-    <div id="status-message">Mechanism ready. Tap notes or play sequence...</div>
+    <div id="status-display">Monument ready. Tap stone slabs or play sequence...</div>
 
-    <div id="coords-box">
+    <div id="vault-box">
         ✦ SANCTUARY VAULT UNLOCKED ✦<br>
         N 30° 12.345 W 095° 34.567<br>
-        <span style="font-size:0.68rem; color:#b8c2cc;">(Record your discovery in the field logbook, hero!)</span>
+        <span style="font-size:0.7rem; color:#a3e635;">(Record your discovery in the field logbook, hero!)</span>
     </div>
 </div>
 
 <script>
+    // Persistent AudioContext to prevent note cutoff bugs
+    let audioCtx = null;
+
+    function initAudio() {
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+    }
+
     const correctSequence = [4, 5, 6, 4, 5, 6];
     let userSequence = [];
     let isPlaying = false;
 
     function playTone(noteIndex) {
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        initAudio();
+        
         const osc = audioCtx.createOscillator();
         const gainNode = audioCtx.createGain();
 
@@ -248,7 +251,7 @@
         osc.type = 'triangle';
         osc.frequency.setValueAtTime(frequency, audioCtx.currentTime);
 
-        gainNode.gain.setValueAtTime(0.4, audioCtx.currentTime);
+        gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
 
         osc.connect(gainNode);
@@ -259,12 +262,12 @@
     }
 
     function handleNotePress(noteNum) {
-        if (isPlaying) return; // Prevent clicking while automatic melody plays
+        if (isPlaying) return; 
         
         playTone(noteNum);
         userSequence.push(noteNum);
 
-        const status = document.getElementById('status-message');
+        const status = document.getElementById('status-display');
         
         if (userSequence.length <= 6) {
             status.innerText = `Sequence input: ${userSequence.join(' - ')}`;
@@ -274,12 +277,12 @@
             const isMatch = userSequence.every((val, index) => val === correctSequence[index]);
             if (isMatch) {
                 status.innerHTML = "CORRECT SEQUENCE! The answer is <strong>Zelda's Lullaby</strong>. Select it from the dropdown below to unlock the final coordinates.";
-                document.getElementById('melody-dropdown').style.borderColor = "#4ade80";
+                document.getElementById('melody-dropdown').style.borderColor = "#558b2f";
             } else {
-                status.innerHTML = "❌ Incorrect sequence. The mechanism jams. Hit Reset Mechanism and try again.";
+                status.innerHTML = "❌ Incorrect sequence. The stone mechanism jams. Hit Reset Mechanism and try again.";
             }
         } else if (userSequence.length > 6) {
-            status.innerText = "Too many notes! Hit Reset Mechanism to clear.";
+            status.innerText = "Too many inputs! Hit Reset Mechanism to clear.";
         }
     }
 
@@ -287,24 +290,22 @@
         if (isPlaying) return;
         isPlaying = true;
         
-        // Completely clear user sequence when playing the demo
         userSequence = [];
-        document.getElementById('coords-box').style.display = 'none';
+        document.getElementById('vault-box').style.display = 'none';
         document.getElementById('melody-dropdown').value = "";
-        document.getElementById('melody-dropdown').style.borderColor = "#c5a059";
+        document.getElementById('melody-dropdown').style.borderColor = "#8c733f";
 
-        const melody = [4, 5, 6, 4, 5, 6]; // FULL 6-NOTE SEQUENCE FIXED!
+        const melody = [4, 5, 6, 4, 5, 6]; 
         let delay = 0;
         
-        document.getElementById('status-message').innerText = "Playing full 6-note ruin mechanism melody...";
+        document.getElementById('status-display').innerText = "Activating full 6-note ancient ruin mechanism...";
 
         melody.forEach((note, index) => {
             setTimeout(() => {
                 playTone(note);
-                // Highlight button visually if desired, or just play tone
                 if (index === melody.length - 1) {
                     setTimeout(() => {
-                        document.getElementById('status-message').innerText = "Melody complete. Enter your 6-note sequence!";
+                        document.getElementById('status-display').innerText = "Mechanism complete. Enter your 6-note sequence using the stone slabs!";
                         isPlaying = false;
                     }, 600);
                 }
@@ -316,28 +317,28 @@
     function resetCylinder() {
         userSequence = [];
         isPlaying = false;
-        document.getElementById('status-message').innerText = "Mechanism reset. Tap notes or play sequence.";
-        document.getElementById('coords-box').style.display = 'none';
+        document.getElementById('status-display').innerText = "Mechanism reset. Tap stone slabs or activate mechanism.";
+        document.getElementById('vault-box').style.display = 'none';
         document.getElementById('melody-dropdown').value = "";
-        document.getElementById('melody-dropdown').style.borderColor = "#c5a059";
+        document.getElementById('melody-dropdown').style.borderColor = "#8c733f";
     }
 
     function checkDropdownSelection() {
         const selectedVal = document.getElementById('melody-dropdown').value;
         const isSequenceCorrect = userSequence.length === 6 && userSequence.every((val, index) => val === correctSequence[index]);
-        const status = document.getElementById('status-message');
-        const coordsBox = document.getElementById('coords-box');
+        const status = document.getElementById('status-display');
+        const vaultBox = document.getElementById('vault-box');
 
         if (selectedVal === "zelda" && isSequenceCorrect) {
-            status.innerHTML = "SUCCESS! The Royal Melody resonates with the ancient stones!";
-            coordsBox.style.display = 'block';
+            status.innerHTML = "SUCCESS! The Royal Melody resonates with the ancient monument!";
+            vaultBox.style.display = 'block';
         } else if (selectedVal !== "") {
             if (!isSequenceCorrect) {
                 status.innerHTML = "⚠️ You must punch in the correct 6-note sequence first before choosing from the archive!";
                 document.getElementById('melody-dropdown').value = "";
             } else {
                 status.innerHTML = "❌ That's not the matching melody for this mechanism. Try another one!";
-                coordsBox.style.display = 'none';
+                vaultBox.style.display = 'none';
             }
         }
     }
