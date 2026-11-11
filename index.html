@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCHC - Zelda Music Box Cipher</title>
+    <style>
+        body {
+            background-color: #0b0f19;
+            color: #e0e0e0;
+            font-family: monospace;
+            margin: 0;
+            padding: 15px;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            border: 3px solid #ffcc00;
+            padding: 20px;
+            background-color: #121824;
+            border-radius: 8px;
+        }
+        h2 {
+            color: #ffcc00;
+            text-align: center;
+            font-size: 18px;
+        }
+        .subtitle {
+            color: #00ffcc;
+            text-align: center;
+            font-size: 11px;
+            margin-bottom: 20px;
+        }
+        .instruction-box {
+            background-color: #161b22;
+            border-left: 4px solid #00ffcc;
+            padding: 10px;
+            font-size: 12px;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+        .note-pad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .note-btn {
+            background-color: #1a2234;
+            border: 2px solid #ffcc00;
+            color: #ffcc00;
+            padding: 15px;
+            font-family: monospace;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .note-btn:active, .note-btn.active {
+            background-color: #ffcc00;
+            color: #0b0f19;
+        }
+        .controls {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .action-btn {
+            background-color: #00ffcc;
+            color: #0b0f19;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            font-family: monospace;
+            font-size: 13px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .dropdown-section {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        select {
+            background-color: #1a2234;
+            color: #ffcc00;
+            border: 2px solid #ffcc00;
+            padding: 8px;
+            font-family: monospace;
+            width: 100%;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        .result-box {
+            background-color: #0b0f19;
+            border: 2px dashed #00ffcc;
+            padding: 15px;
+            text-align: center;
+            display: none;
+        }
+        .success-text {
+            color: #00ffcc;
+            font-size: 14px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🛡️ FIELD MUSIC BOX CIPHER 🛡️</h2>
+    <div class="subtitle">A JCACHEkingofthehide Production // NtN066</div>
+
+    <div class="instruction-box">
+        <b>Field Directive:</b> Tap the interactive tone cylinders below in the correct royal sequence, or select the matching melody from the dropdown archive to unlock your final extraction coordinates!
+    </div>
+
+    <!-- Interactive Tone Buttons (Simulated Music Box Cylinder) -->
+    <div class="note-pad">
+        <div class="note-btn" onclick="playTone(1, 'Note A')">CROWN 1</div>
+        <div class="note-btn" onclick="playTone(2, 'Note B')">CROWN 2</div>
+        <div class="note-btn" onclick="playTone(3, 'Note C')">CROWN 3</div>
+        <div class="note-btn" onclick="playTone(4, 'Note D')">CROWN 4</div>
+        <div class="note-btn" onclick="playTone(5, 'Note E')">CROWN 5</div>
+        <div class="note-btn" onclick="playTone(6, 'Note F')">CROWN 6</div>
+    </div>
+
+    <div class="controls">
+        <button class="action-btn" onclick="playSequence()">▶ PLAY CYLINDER MELODY</button>
+        <button class="action-btn" onclick="resetInput()" style="background-color: #ff4444; color: #fff;">⟳ RESET</button>
+    </div>
+
+    <!-- Dropdown Cipher Match -->
+    <div class="dropdown-section">
+        <label style="font-size: 12px; color: #ffcc00; display: block; margin-bottom: 5px;">SELECT MATCHING HYRULE MELODY:</label>
+        <select id="melodySelect" onchange="checkCipher()">
+            <option value="">-- Choose Field Melody Match --</option>
+            <option value="wrong">Moblin Bagpipe Jam (Incorrect)</option>
+            <option value="wrong">Lon Lon Drainage Leak Blues (Incorrect)</option>
+            <option value="correct">Song of Storms / Royal Lullaby Variant (CORRECT)</option>
+            <option value="wrong">Cucco Alarm Chorus (Incorrect)</option>
+        </select>
+    </div>
+
+    <!-- Secured Result Box (Hidden until solved) -->
+    <div id="resultBox" class="result-box">
+        <div class="success-text">🎉 VAULT CRACKED SUCCESSFULLY! 🎉</div>
+        <p style="font-size: 12px; margin: 10px 0;">Use these coordinates in the Geocaching.com Solution Checker:</p>
+        <div style="color: #ffcc00; font-size: 14px; font-weight: bold;" id="coordsOutput">N 30° 05.900 W 095° 27.304</div>
+    </div>
+</div>
+
+<script>
+    // Simple Web Audio API synth so it actually plays real notes natively on Android browsers without loading external files!
+    function playTone(noteIndex, noteName) {
+        try {
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            
+            // Map notes to different frequencies
+            const frequencies = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00];
+            osc.frequency.value = frequencies[noteIndex - 1] || 440;
+            
+            osc.type = 'triangle'; // Gives a nice soft music-box-like chime
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.start();
+            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.8);
+            osc.stop(audioCtx.currentTime + 0.8);
+        } catch (e) {
+            console.log("Audio context blocked or unsupported");
+        }
+    }
+
+    function playSequence() {
+        // Plays a cute little automated demo chime sequence
+        playTone(1, 'A');
+        setTimeout(() => playTone(3, 'C'), 300);
+        setTimeout(() => playTone(5, 'E'), 600);
+    }
+
+    function resetInput() {
+        document.getElementById('melodySelect').selectedIndex = 0;
+        document.getElementById('resultBox').style.display = 'none';
+    }
+
+    function checkCipher() {
+        const val = document.getElementById('melodySelect').value;
+        const resultBox = document.getElementById('resultBox');
+        
+        if (val === 'correct') {
+            resultBox.style.display = 'block';
+        } else {
+            resultBox.style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>
