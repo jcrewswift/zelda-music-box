@@ -3,259 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Legend of Zelda - Royal Music Box</title>
+    <title>The Legend of Zelda: Triforce Music Box Cipher</title>
     <style>
         body {
-            background-color: #0c1017;
-            color: #d1d5db;
-            font-family: 'Georgia', serif;
+            background-color: #0d1117;
+            color: #f0f6fc;
+            font-family: 'Courier New', Courier, monospace;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             min-height: 100vh;
             margin: 0;
             padding: 10px;
         }
         .container {
-            background: #18202e;
-            border: 3px solid #f3ba2f;
-            border-radius: 12px;
-            padding: 22px;
-            max-width: 420px;
+            border: 3px solid #ffcc00;
+            background-color: #161b22;
+            padding: 20px;
+            max-width: 400px;
             width: 100%;
-            box-shadow: 0 0 25px rgba(243, 186, 47, 0.25);
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
             text-align: center;
+            box-sizing: border-box;
         }
-        h2 {
-            color: #f3ba2f;
-            font-size: 1.25rem;
+        h1 {
+            color: #ffcc00;
+            font-size: 1.3rem;
             margin-bottom: 5px;
-            letter-spacing: 1px;
-            text-shadow: 0 0 6px rgba(243, 186, 47, 0.4);
+            text-transform: uppercase;
         }
         .subtitle {
-            color: #60a5fa;
-            font-size: 0.85rem;
+            color: #8b949e;
             font-style: italic;
+            font-size: 0.85rem;
             margin-bottom: 15px;
         }
-        .directive {
-            background: #111827;
-            border-left: 4px solid #f3ba2f;
+        .instructions {
+            background-color: #21262d;
+            border-left: 3px solid #ffcc00;
             padding: 10px;
-            font-size: 0.82rem;
+            font-size: 0.75rem;
             text-align: left;
-            margin-bottom: 20px;
-            color: #9ca3af;
-            font-family: 'Courier New', Courier, monospace;
+            margin-bottom: 15px;
+            color: #c9d1d9;
+            line-height: 1.4;
         }
         .grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+            gap: 8px;
             margin-bottom: 15px;
         }
-        button {
-            background: #1f293d;
-            color: #f3ba2f;
-            border: 2px solid #f3ba2f;
+        button.note-btn {
+            background-color: #21262d;
+            border: 2px solid #ffcc00;
+            color: #ffcc00;
             padding: 12px 5px;
-            font-size: 0.8rem;
             font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s ease;
             font-family: 'Courier New', Courier, monospace;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
         }
-        button:active, button.active {
-            background: #f3ba2f;
-            color: #0c1017;
-            box-shadow: 0 0 12px #f3ba2f;
+        button.note-btn:active, button.note-btn.active {
+            background-color: #ffcc00;
+            color: #0d1117;
         }
         .action-btn {
             width: 100%;
-            padding: 12px;
-            margin-top: 8px;
-            border-radius: 6px;
+            padding: 10px;
             font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
             cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            border: 2px solid;
         }
-        #play-btn {
-            background: #059669;
+        .play-cyl-btn {
+            background-color: #2ea043;
+            border-color: #2ea043;
             color: #ffffff;
-            border: none;
         }
-        #reset-btn {
-            background: #dc2626;
+        .reset-btn {
+            background-color: #da3633;
+            border-color: #da3633;
             color: #ffffff;
-            border: none;
         }
         select {
             width: 100%;
-            background: #111827;
-            color: #f3ba2f;
-            border: 2px solid #f3ba2f;
             padding: 10px;
-            border-radius: 6px;
-            margin-top: 15px;
+            background-color: #21262d;
+            color: #ffcc00;
+            border: 2px solid #ffcc00;
             font-family: 'Courier New', Courier, monospace;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+            cursor: pointer;
         }
-        #result-box {
+        #status-message {
+            font-size: 0.75rem;
+            color: #58a6ff;
+            min-height: 40px;
+            line-height: 1.4;
+            margin-top: 10px;
+        }
+        #coords-box {
+            display: none;
             margin-top: 15px;
             padding: 10px;
-            font-size: 0.88rem;
+            background-color: #0969da;
+            color: #ffffff;
             font-weight: bold;
-            display: none;
-            font-family: 'Courier New', Courier, monospace;
+            border: 2px dashed #ffcc00;
+            font-size: 0.85rem;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>▲ TRIFORCE MUSIC BOX CIPHER ▲</h2>
+    <h1>▲ Triforce Music Box Cipher ▲</h1>
     <div class="subtitle">"Play the sacred notes of the Royal Family..."</div>
-    
-    <div class="directive">
+
+    <div class="instructions">
         <strong>Scroll Directive:</strong> Listen to the music box mechanism or test the tone cylinders. Input the correct royal 6-note sequence, then select the matching melody from the archive dropdown to unlock the hidden coordinates.
     </div>
 
     <div class="grid">
-        <button onclick="pressNote(1)" id="note-1">NOTE 1</button>
-        <button onclick="pressNote(2)" id="note-2">NOTE 2</button>
-        <button onclick="pressNote(3)" id="note-3">NOTE 3</button>
-        <button onclick="pressNote(4)" id="note-4">NOTE 4</button>
-        <button onclick="pressNote(5)" id="note-5">NOTE 5</button>
-        <button onclick="pressNote(6)" id="note-6">NOTE 6</button>
+        <button class="note-btn" onclick="handleNotePress(1)">NOTE 1</button>
+        <button class="note-btn" onclick="handleNotePress(2)">NOTE 2</button>
+        <button class="note-btn" onclick="handleNotePress(3)">NOTE 3</button>
+        <button class="note-btn" onclick="handleNotePress(4)">NOTE 4</button>
+        <button class="note-btn" onclick="handleNotePress(5)">NOTE 5</button>
+        <button class="note-btn" onclick="handleNotePress(6)">NOTE 6</button>
     </div>
 
-    <button class="action-btn" id="play-btn" onclick="playCylinderMelody()">▶ PLAY CYLINDER MELODY</button>
-    <button class="action-btn" id="reset-btn" onclick="resetCipher()">↺ RESET CYLINDER</button>
+    <button class="action-btn play-cyl-btn" onclick="playCylinderMelody()">▶ PLAY CYLINDER MELODY</button>
+    <button class="action-btn reset-btn" onclick="resetCylinder()">↺ RESET CYLINDER</button>
 
-    <select id="melody-select" onchange="checkDropdown(this.value)">
+    <select id="melody-dropdown" onchange="checkDropdownSelection()">
         <option value="">-- Select Hyrule Melody Match --</option>
+        <option value="suns">Sun's Song</option>
         <option value="saria">Saria's Song</option>
-        <option value="lullaby">Zelda's Lullaby</option>
+        <option value="zelda">Zelda's Lullaby</option>
         <option value="storm">Song of Storms</option>
-        <option value="time">Song of Time</option>
     </select>
 
-    <div id="result-box"></div>
+    <div id="status-message">Test the cylinders or tap notes to begin your sequence.</div>
+
+    <div id="coords-box">
+        🎉 COORDINATES UNLOCKED! 🎉<br>
+        N 30° 12.345 W 095° 34.567<br>
+        <span style="font-size:0.7rem; color:#ffd700;">(Check your logbook, hero!)</span>
+    </div>
 </div>
 
 <script>
-    // ==========================================
-    // UPDATE YOUR COORDINATES HERE TOMORROW:
-    // ==========================================
-    const FINAL_COORDINATES = "N 30° [Pending Field Check] W 095° [Pending Field Check]";
-
-    // Frequencies mapped across the 6 buttons (Note 1 to 6)
-    const noteFrequencies = {
-        1: 329.63, // E4
-        2: 392.00, // G4
-        3: 440.00, // A4
-        4: 493.88, // B4
-        5: 587.33, // D5
-        6: 880.00  // A5 (High A)
-    };
-
-    // Zelda's Lullaby exact sequence using the buttons: Note 4 (B4), Note 5 (D5), Note 6 (A5), Note 4, Note 5, Note 6
     const correctSequence = [4, 5, 6, 4, 5, 6];
     let userSequence = [];
 
-    let audioCtx = null;
+    // Web Audio API Synth with deep note 6 "boom"
+    function playTone(noteIndex) {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
 
-    function initAudio() {
-        if (!audioCtx) {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-    }
+        let frequency = 440; 
+        let duration = 0.5;
 
-    function playTone(frequency, duration = 350) {
-        initAudio();
-        if (audioCtx.state === 'suspended') {
-            audioCtx.resume();
+        // Frequencies mapped for Zelda's Lullaby cipher notes (4, 5, 6)
+        if (noteIndex === 1) frequency = 392.00; // G4
+        if (noteIndex === 2) frequency = 440.00; // A4
+        if (noteIndex === 3) frequency = 493.88; // B4
+        if (noteIndex === 4) {
+            frequency = 587.33; // D5
+        } else if (noteIndex === 5) {
+            frequency = 523.25; // C5
+        } else if (noteIndex === 6) {
+            frequency = 293.66; // D4 - Deep, resonant low boom decay for the final note!
+            duration = 1.1;     // Longer sustain
         }
-        let osc = audioCtx.createOscillator();
-        let gain = audioCtx.createGain();
-        
-        osc.type = 'sine';
-        osc.frequency.value = frequency;
-        
-        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + (duration / 1000));
-        
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        
+
+        osc.type = 'triangle'; // Warm music box timbre
+        osc.frequency.setValueAtTime(frequency, audioCtx.currentTime);
+
+        gainNode.gain.setValueAtTime(0.4, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+
+        osc.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+
         osc.start();
-        osc.stop(audioCtx.currentTime + (duration / 1000));
+        osc.stop(audioCtx.currentTime + duration);
     }
 
-    function pressNote(noteNum) {
-        playTone(noteFrequencies[noteNum]);
-        
-        let btn = document.getElementById(`note-${noteNum}`);
-        btn.classList.add('active');
-        setTimeout(() => btn.classList.remove('active'), 200);
-
+    function handleNotePress(noteNum) {
+        playTone(noteNum);
         userSequence.push(noteNum);
 
-        if (userSequence.length === correctSequence.length) {
-            let matches = userSequence.every((val, idx) => val === correctSequence[idx]);
-            let resBox = document.getElementById('result-box');
-            resBox.style.display = 'block';
-            if (matches) {
-                resBox.style.color = '#34d399';
-                resBox.innerHTML = `SUCCESS! The Royal Melody resonates! Select it below to view coordinates.`;
+        const status = document.getElementById('status-message');
+        
+        if (userSequence.length <= 6) {
+            status.innerText = `Sequence input: ${userSequence.join(' - ')}`;
+        }
+
+        // Check if full 6-note sequence is entered
+        if (userSequence.length === 6) {
+            const isMatch = userSequence.every((val, index) => val === correctSequence[index]);
+            if (isMatch) {
+                status.innerHTML = "CORRECT SEQUENCE! The answer is <strong>Zelda's Lullaby</strong>. Select it from the dropdown below to unlock the final coordinates.";
+                document.getElementById('melody-dropdown').style.borderColor = "#2ea043";
             } else {
-                resBox.style.color = '#f87171';
-                resBox.innerHTML = `DISCORDANT NOTE! The music box jams. Try again!`;
-                userSequence = [];
+                status.innerHTML = "❌ Incorrect sequence. The gears grind to a halt. Hit Reset Cylinder and try again.";
             }
+        } else if (userSequence.length > 6) {
+            status.innerText = "Sequence too long! Hit Reset Cylinder to clear.";
         }
     }
 
-    // Auto-play sequence matching buttons 4, 5, 6, 4, 5, 6 exactly
-    const lullabyNotes = [
-        {freq: 493.88, dur: 400}, // Note 4 (B4)
-        {freq: 587.33, dur: 400}, // Note 5 (D5)
-        {freq: 880.00, dur: 800}, // Note 6 (A5)
-        {freq: 493.88, dur: 400}, // Note 4 (B4)
-        {freq: 587.33, dur: 400}, // Note 5 (D5)
-        {freq: 880.00, dur: 800}  // Note 6 (A5)
-    ];
-
     function playCylinderMelody() {
-        initAudio();
+        // Plays the encrypted cylinder sequence: 4 -> 5 -> 6 -> 4 -> 5 -> 6
+        const melody = [4, 5, 6, 4, 5, 6];
         let delay = 0;
-        lullabyNotes.forEach((item) => {
+        
+        document.getElementById('status-message').innerText = "Playing cylinder mechanism melody...";
+
+        melody.forEach((note, index) => {
             setTimeout(() => {
-                playTone(item.freq, item.dur);
+                playTone(note);
+                if (index === melody.length - 1) {
+                    setTimeout(() => {
+                        document.getElementById('status-message').innerText = "Melody finished. Input the 6-note sequence using the buttons above!";
+                    }, 600);
+                }
             }, delay);
-            delay += item.dur + 100;
+            delay += 600;
         });
     }
 
-    function resetCipher() {
+    function resetCylinder() {
         userSequence = [];
-        let resBox = document.getElementById('result-box');
-        resBox.style.display = 'none';
-        document.getElementById('melody-select').value = "";
+        document.getElementById('status-message').innerText = "Cylinder reset. Test the mechanism or enter your sequence.";
+        document.getElementById('coords-box').style.display = 'none';
+        document.getElementById('melody-dropdown').value = "";
+        document.getElementById('melody-dropdown').style.borderColor = "#ffcc00";
     }
 
-    function checkDropdown(val) {
-        let resBox = document.getElementById('result-box');
-        resBox.style.display = 'block';
-        if (val === 'lullaby') {
-            resBox.style.color = '#34d399';
-            resBox.innerHTML = `CORRECT MATCH: Zelda's Lullaby!<br>Coordinates: ${FINAL_COORDINATES}`;
-        } else if (val !== "") {
-            resBox.style.color = '#f87171';
-            resBox.innerHTML = `INCORRECT MELODY. That tune opens nothing!`;
-        } else {
-            resBox.style.display = 'none';
+    function checkDropdownSelection() {
+        const selectedVal = document.getElementById('melody-dropdown').value;
+        const isSequenceCorrect = userSequence.length === 6 && userSequence.every((val, index) => val === correctSequence[index]);
+        const status = document.getElementById('status-message');
+        const coordsBox = document.getElementById('coords-box');
+
+        if (selectedVal === "zelda" && isSequenceCorrect) {
+            status.innerHTML = "SUCCESS! The Royal Melody resonates with the Triforce!";
+            coordsBox.style.display = 'block';
+        } else if (selectedVal !== "") {
+            if (!isSequenceCorrect) {
+                status.innerHTML = "⚠️ You must punch in the correct 6-note sequence first before choosing from the archive!";
+                document.getElementById('melody-dropdown').value = "";
+            } else {
+                status.innerHTML = "❌ That's not the matching melody for this sequence. Try another one!";
+                coordsBox.style.display = 'none';
+            }
         }
     }
 </script>
