@@ -6,8 +6,8 @@
     <title>The Legend of Zelda: Triforce Music Box Cipher</title>
     <style>
         body {
-            background-color: #0d1117;
-            color: #f0f6fc;
+            background-color: #0b1318;
+            color: #e0fbfc;
             font-family: 'Courier New', Courier, monospace;
             display: flex;
             flex-direction: column;
@@ -18,35 +18,38 @@
             padding: 10px;
         }
         .container {
-            border: 3px solid #ffcc00;
-            background-color: #161b22;
+            border: 2px solid #00e5ff;
+            background-color: #111e25;
             padding: 20px;
             max-width: 400px;
             width: 100%;
-            box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.25);
             text-align: center;
             box-sizing: border-box;
         }
         h1 {
-            color: #ffcc00;
-            font-size: 1.3rem;
+            color: #00e5ff;
+            font-size: 1.2rem;
             margin-bottom: 5px;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
         .subtitle {
-            color: #8b949e;
+            color: #8ab4f8;
             font-style: italic;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             margin-bottom: 15px;
         }
         .instructions {
-            background-color: #21262d;
-            border-left: 3px solid #ffcc00;
+            background-color: #182c36;
+            border-left: 3px solid #00e5ff;
+            border-radius: 4px;
             padding: 10px;
             font-size: 0.75rem;
             text-align: left;
             margin-bottom: 15px;
-            color: #c9d1d9;
+            color: #b0bec5;
             line-height: 1.4;
         }
         .grid {
@@ -56,46 +59,51 @@
             margin-bottom: 15px;
         }
         button.note-btn {
-            background-color: #21262d;
-            border: 2px solid #ffcc00;
-            color: #ffcc00;
+            background-color: #182c36;
+            border: 2px solid #00e5ff;
+            color: #00e5ff;
             padding: 12px 5px;
             font-weight: bold;
             font-family: 'Courier New', Courier, monospace;
             cursor: pointer;
             font-size: 0.8rem;
+            border-radius: 6px;
             transition: all 0.2s ease;
         }
         button.note-btn:active, button.note-btn.active {
-            background-color: #ffcc00;
-            color: #0d1117;
+            background-color: #00e5ff;
+            color: #0b1318;
+            box-shadow: 0 0 10px #00e5ff;
         }
         .action-btn {
             width: 100%;
-            padding: 10px;
+            padding: 11px;
             font-weight: bold;
             font-family: 'Courier New', Courier, monospace;
             cursor: pointer;
             margin-bottom: 10px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+            border-radius: 6px;
             border: 2px solid;
+            text-transform: uppercase;
         }
         .play-cyl-btn {
-            background-color: #2ea043;
-            border-color: #2ea043;
+            background-color: #00897b;
+            border-color: #26a69a;
             color: #ffffff;
         }
         .reset-btn {
-            background-color: #da3633;
-            border-color: #da3633;
+            background-color: #b71c1c;
+            border-color: #e57373;
             color: #ffffff;
         }
         select {
             width: 100%;
             padding: 10px;
-            background-color: #21262d;
-            color: #ffcc00;
-            border: 2px solid #ffcc00;
+            background-color: #182c36;
+            color: #00e5ff;
+            border: 2px solid #00e5ff;
+            border-radius: 6px;
             font-family: 'Courier New', Courier, monospace;
             font-size: 0.8rem;
             margin-bottom: 15px;
@@ -103,7 +111,7 @@
         }
         #status-message {
             font-size: 0.75rem;
-            color: #58a6ff;
+            color: #80cbc4;
             min-height: 40px;
             line-height: 1.4;
             margin-top: 10px;
@@ -111,23 +119,25 @@
         #coords-box {
             display: none;
             margin-top: 15px;
-            padding: 10px;
-            background-color: #0969da;
-            color: #ffffff;
+            padding: 12px;
+            background-color: #004d40;
+            color: #e0fbfc;
             font-weight: bold;
-            border: 2px dashed #ffcc00;
+            border: 2px dashed #00e5ff;
+            border-radius: 6px;
             font-size: 0.85rem;
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>▲ Triforce Music Box Cipher ▲</h1>
+    <h1>◈ TRIFORCE MUSIC BOX CIPHER ◈</h1>
     <div class="subtitle">"Play the sacred notes of the Royal Family..."</div>
 
     <div class="instructions">
-        <strong>Scroll Directive:</strong> Listen to the music box mechanism or test the tone cylinders. Input the correct royal 6-note sequence, then select the matching melody from the archive dropdown to unlock the hidden coordinates.
+        <strong>Sheikah Slate Directive:</strong> Listen to the music box mechanism or test the tone cylinders. Input the correct royal 6-note sequence, then select the matching melody from the archive dropdown to unlock the hidden coordinates.
     </div>
 
     <div class="grid">
@@ -150,12 +160,12 @@
         <option value="storm">Song of Storms</option>
     </select>
 
-    <div id="status-message">Test the cylinders or tap notes to begin your sequence.</div>
+    <div id="status-message">Test the mechanism or tap notes to begin your sequence.</div>
 
     <div id="coords-box">
-        🎉 COORDINATES UNLOCKED! 🎉<br>
+        ✨ SHEIKAH SANCTUARY UNLOCKED! ✨<br>
         N 30° 12.345 W 095° 34.567<br>
-        <span style="font-size:0.7rem; color:#ffd700;">(Check your logbook, hero!)</span>
+        <span style="font-size:0.7rem; color:#80cbc4;">(Record your triumph in the logbook, hero!)</span>
     </div>
 </div>
 
@@ -213,7 +223,7 @@
             const isMatch = userSequence.every((val, index) => val === correctSequence[index]);
             if (isMatch) {
                 status.innerHTML = "CORRECT SEQUENCE! The answer is <strong>Zelda's Lullaby</strong>. Select it from the dropdown below to unlock the final coordinates.";
-                document.getElementById('melody-dropdown').style.borderColor = "#2ea043";
+                document.getElementById('melody-dropdown').style.borderColor = "#00e5ff";
             } else {
                 status.innerHTML = "❌ Incorrect sequence. The gears grind to a halt. Hit Reset Cylinder and try again.";
             }
@@ -223,7 +233,6 @@
     }
 
     function playCylinderMelody() {
-        // Plays the encrypted cylinder sequence: 4 -> 5 -> 6 -> 4 -> 5 -> 6
         const melody = [4, 5, 6, 4, 5, 6];
         let delay = 0;
         
@@ -247,7 +256,7 @@
         document.getElementById('status-message').innerText = "Cylinder reset. Test the mechanism or enter your sequence.";
         document.getElementById('coords-box').style.display = 'none';
         document.getElementById('melody-dropdown').value = "";
-        document.getElementById('melody-dropdown').style.borderColor = "#ffcc00";
+        document.getElementById('melody-dropdown').style.borderColor = "#00e5ff";
     }
 
     function checkDropdownSelection() {
