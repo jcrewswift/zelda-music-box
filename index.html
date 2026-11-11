@@ -3,199 +3,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GCHC - Zelda Music Box Cipher</title>
+    <title>The Legend of Zelda - Royal Music Box</title>
     <style>
         body {
-            background-color: #0b0f19;
-            color: #e0e0e0;
-            font-family: monospace;
+            background-color: #0c1017;
+            color: #d1d5db;
+            font-family: 'Georgia', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
             margin: 0;
-            padding: 15px;
+            padding: 10px;
         }
         .container {
-            max-width: 500px;
-            margin: 0 auto;
-            border: 3px solid #ffcc00;
-            padding: 20px;
-            background-color: #121824;
-            border-radius: 8px;
+            background: #18202e;
+            border: 3px solid #f3ba2f;
+            border-radius: 12px;
+            padding: 22px;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 0 25px rgba(243, 186, 47, 0.25);
+            text-align: center;
         }
         h2 {
-            color: #ffcc00;
-            text-align: center;
-            font-size: 18px;
+            color: #f3ba2f;
+            font-size: 1.25rem;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 6px rgba(243, 186, 47, 0.4);
         }
         .subtitle {
-            color: #00ffcc;
-            text-align: center;
-            font-size: 11px;
-            margin-bottom: 20px;
+            color: #60a5fa;
+            font-size: 0.85rem;
+            font-style: italic;
+            margin-bottom: 15px;
         }
-        .instruction-box {
-            background-color: #161b22;
-            border-left: 4px solid #00ffcc;
+        .directive {
+            background: #111827;
+            border-left: 4px solid #f3ba2f;
             padding: 10px;
-            font-size: 12px;
-            line-height: 1.4;
+            font-size: 0.82rem;
+            text-align: left;
             margin-bottom: 20px;
+            color: #9ca3af;
+            font-family: 'Courier New', Courier, monospace;
         }
-        .note-pad {
+        .grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
-        .note-btn {
-            background-color: #1a2234;
-            border: 2px solid #ffcc00;
-            color: #ffcc00;
-            padding: 15px;
-            font-family: monospace;
+        button {
+            background: #1f293d;
+            color: #f3ba2f;
+            border: 2px solid #f3ba2f;
+            padding: 12px 5px;
+            font-size: 0.8rem;
             font-weight: bold;
-            font-size: 14px;
-            text-align: center;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
-            transition: 0.2s;
+            transition: all 0.2s ease;
+            font-family: 'Courier New', Courier, monospace;
         }
-        .note-btn:active, .note-btn.active {
-            background-color: #ffcc00;
-            color: #0b0f19;
-        }
-        .controls {
-            text-align: center;
-            margin-bottom: 20px;
+        button:active, button.active {
+            background: #f3ba2f;
+            color: #0c1017;
+            box-shadow: 0 0 12px #f3ba2f;
         }
         .action-btn {
-            background-color: #00ffcc;
-            color: #0b0f19;
-            border: none;
-            padding: 10px 20px;
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border-radius: 6px;
             font-weight: bold;
-            font-family: monospace;
-            font-size: 13px;
-            border-radius: 4px;
             cursor: pointer;
-            margin: 5px;
         }
-        .dropdown-section {
-            margin-bottom: 20px;
-            text-align: center;
+        #play-btn {
+            background: #059669;
+            color: #ffffff;
+            border: none;
+        }
+        #reset-btn {
+            background: #dc2626;
+            color: #ffffff;
+            border: none;
         }
         select {
-            background-color: #1a2234;
-            color: #ffcc00;
-            border: 2px solid #ffcc00;
-            padding: 8px;
-            font-family: monospace;
             width: 100%;
-            border-radius: 4px;
-            font-size: 12px;
+            background: #111827;
+            color: #f3ba2f;
+            border: 2px solid #f3ba2f;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
         }
-        .result-box {
-            background-color: #0b0f19;
-            border: 2px dashed #00ffcc;
-            padding: 15px;
-            text-align: center;
-            display: none;
-        }
-        .success-text {
-            color: #00ffcc;
-            font-size: 14px;
+        #result-box {
+            margin-top: 15px;
+            padding: 10px;
+            font-size: 0.88rem;
             font-weight: bold;
+            display: none;
+            font-family: 'Courier New', Courier, monospace;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>🛡️ FIELD MUSIC BOX CIPHER 🛡️</h2>
-    <div class="subtitle">A JCACHEkingofthehide Production // NtN066</div>
-
-    <div class="instruction-box">
-        <b>Field Directive:</b> Tap the interactive tone cylinders below in the correct royal sequence, or select the matching melody from the dropdown archive to unlock your final extraction coordinates!
+    <h2>▲ TRIFORCE MUSIC BOX CIPHER ▲</h2>
+    <div class="subtitle">"Play the sacred notes of the Royal Family..."</div>
+    
+    <div class="directive">
+        <strong>Scroll Directive:</strong> Tap the interactive tone cylinders below in the correct royal sequence (Zelda's Lullaby), or select the matching melody from the archive dropdown to reveal the hidden stash coordinates.
     </div>
 
-    <!-- Interactive Tone Buttons (Simulated Music Box Cylinder) -->
-    <div class="note-pad">
-        <div class="note-btn" onclick="playTone(1, 'Note A')">CROWN 1</div>
-        <div class="note-btn" onclick="playTone(2, 'Note B')">CROWN 2</div>
-        <div class="note-btn" onclick="playTone(3, 'Note C')">CROWN 3</div>
-        <div class="note-btn" onclick="playTone(4, 'Note D')">CROWN 4</div>
-        <div class="note-btn" onclick="playTone(5, 'Note E')">CROWN 5</div>
-        <div class="note-btn" onclick="playTone(6, 'Note F')">CROWN 6</div>
+    <div class="grid">
+        <button onclick="pressCrown(1)" id="crown-1">NOTE 1</button>
+        <button onclick="pressCrown(2)" id="crown-2">NOTE 2</button>
+        <button onclick="pressCrown(3)" id="crown-3">NOTE 3</button>
+        <button onclick="pressCrown(4)" id="crown-4">NOTE 4</button>
+        <button onclick="pressCrown(5)" id="crown-5">NOTE 5</button>
+        <button onclick="pressCrown(6)" id="crown-6">NOTE 6</button>
     </div>
 
-    <div class="controls">
-        <button class="action-btn" onclick="playSequence()">▶ PLAY CYLINDER MELODY</button>
-        <button class="action-btn" onclick="resetInput()" style="background-color: #ff4444; color: #fff;">⟳ RESET</button>
-    </div>
+    <button class="action-btn" id="play-btn" onclick="playCylinderMelody()">▶ PLAY CYLINDER MELODY</button>
+    <button class="action-btn" id="reset-btn" onclick="resetCipher()">↺ RESET CYLINDER</button>
 
-    <!-- Dropdown Cipher Match -->
-    <div class="dropdown-section">
-        <label style="font-size: 12px; color: #ffcc00; display: block; margin-bottom: 5px;">SELECT MATCHING HYRULE MELODY:</label>
-        <select id="melodySelect" onchange="checkCipher()">
-            <option value="">-- Choose Field Melody Match --</option>
-            <option value="wrong">Moblin Bagpipe Jam (Incorrect)</option>
-            <option value="wrong">Lon Lon Drainage Leak Blues (Incorrect)</option>
-            <option value="correct">Song of Storms / Royal Lullaby Variant (CORRECT)</option>
-            <option value="wrong">Cucco Alarm Chorus (Incorrect)</option>
-        </select>
-    </div>
+    <select id="melody-select" onchange="checkDropdown(this.value)">
+        <option value="">-- Select Hyrule Melody --</option>
+        <option value="saria">Saria's Song</option>
+        <option value="lullaby">Zelda's Lullaby</option>
+        <option value="storm">Song of Storms</option>
+        <option value="time">Song of Time</option>
+    </select>
 
-    <!-- Secured Result Box (Hidden until solved) -->
-    <div id="resultBox" class="result-box">
-        <div class="success-text">🎉 VAULT CRACKED SUCCESSFULLY! 🎉</div>
-        <p style="font-size: 12px; margin: 10px 0;">Use these coordinates in the Geocaching.com Solution Checker:</p>
-        <div style="color: #ffcc00; font-size: 14px; font-weight: bold;" id="coordsOutput">N 30° 05.900 W 095° 27.304</div>
-    </div>
+    <div id="result-box"></div>
 </div>
 
 <script>
-    // Simple Web Audio API synth so it actually plays real notes natively on Android browsers without loading external files!
-    function playTone(noteIndex, noteName) {
-        try {
-            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            
-            // Map notes to different frequencies
-            const frequencies = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00];
-            osc.frequency.value = frequencies[noteIndex - 1] || 440;
-            
-            osc.type = 'triangle'; // Gives a nice soft music-box-like chime
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            
-            osc.start();
-            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.8);
-            osc.stop(audioCtx.currentTime + 0.8);
-        } catch (e) {
-            console.log("Audio context blocked or unsupported");
+    // ==========================================
+    // UPDATE YOUR COORDINATES HERE TOMORROW:
+    // ==========================================
+    const FINAL_COORDINATES = "N 30° [Pending Field Check] W 095° [Pending Field Check]";
+
+    // Zelda's Lullaby Correct Sequence: Note 2, 4, 5, 2, 4, 5
+    const correctSequence = [2, 4, 5, 2, 4, 5];
+    let userSequence = [];
+
+    let audioCtx = null;
+
+    function initAudio() {
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         }
     }
 
-    function playSequence() {
-        // Plays a cute little automated demo chime sequence
-        playTone(1, 'A');
-        setTimeout(() => playTone(3, 'C'), 300);
-        setTimeout(() => playTone(5, 'E'), 600);
-    }
-
-    function resetInput() {
-        document.getElementById('melodySelect').selectedIndex = 0;
-        document.getElementById('resultBox').style.display = 'none';
-    }
-
-    function checkCipher() {
-        const val = document.getElementById('melodySelect').value;
-        const resultBox = document.getElementById('resultBox');
+    function playTone(frequency, duration = 300) {
+        initAudio();
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+        let osc = audioCtx.createOscillator();
+        let gain = audioCtx.createGain();
         
-        if (val === 'correct') {
-            resultBox.style.display = 'block';
+        osc.type = 'sine';
+        osc.frequency.value = frequency;
+        
+        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + (duration / 1000));
+        
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        
+        osc.start();
+        osc.stop(audioCtx.currentTime + (duration / 1000));
+    }
+
+    const crownFrequencies = {
+        1: 329.63, // E4
+        2: 392.00, // G4
+        3: 440.00, // A4
+        4: 493.88, // B4
+        5: 587.33, // D5
+        6: 659.25  // E5
+    };
+
+    function pressCrown(crownNum) {
+        playTone(crownFrequencies[crownNum]);
+        
+        let btn = document.getElementById(`crown-${crownNum}`);
+        btn.classList.add('active');
+        setTimeout(() => btn.classList.remove('active'), 200);
+
+        userSequence.push(crownNum);
+
+        if (userSequence.length === correctSequence.length) {
+            let matches = userSequence.every((val, idx) => val === correctSequence[idx]);
+            let resBox = document.getElementById('result-box');
+            resBox.style.display = 'block';
+            if (matches) {
+                resBox.style.color = '#34d399';
+                resBox.innerHTML = `SUCCESS! The Royal Melody resonates!<br>Coordinates: ${FINAL_COORDINATES}`;
+            } else {
+                resBox.style.color = '#f87171';
+                resBox.innerHTML = `DISCORDANT NOTE! The music box jams. Try again!`;
+                userSequence = [];
+            }
+        }
+    }
+
+    const lullabyNotes = [
+        {note: 392.00, dur: 400}, // G4
+        {note: 493.88, dur: 400}, // B4
+        {note: 587.33, dur: 800}, // D5
+        {note: 392.00, dur: 400}, // G4
+        {note: 493.88, dur: 400}, // B4
+        {note: 587.33, dur: 800}  // D5
+    ];
+
+    function playCylinderMelody() {
+        initAudio();
+        let delay = 0;
+        lullabyNotes.forEach((item) => {
+            setTimeout(() => {
+                playTone(item.note, item.dur);
+            }, delay);
+            delay += item.dur + 100;
+        });
+    }
+
+    function resetCipher() {
+        userSequence = [];
+        let resBox = document.getElementById('result-box');
+        resBox.style.display = 'none';
+        document.getElementById('melody-select').value = "";
+    }
+
+    function checkDropdown(val) {
+        let resBox = document.getElementById('result-box');
+        resBox.style.display = 'block';
+        if (val === 'lullaby') {
+            resBox.style.color = '#34d399';
+            resBox.innerHTML = `CORRECT MATCH: Zelda's Lullaby!<br>Coordinates: ${FINAL_COORDINATES}`;
+        } else if (val !== "") {
+            resBox.style.color = '#f87171';
+            resBox.innerHTML = `INCORRECT MELODY. That tune opens nothing!`;
         } else {
-            resultBox.style.display = 'none';
+            resBox.style.display = 'none';
         }
     }
 </script>
