@@ -118,23 +118,23 @@
     <div class="subtitle">"Play the sacred notes of the Royal Family..."</div>
     
     <div class="directive">
-        <strong>Scroll Directive:</strong> Tap the interactive tone cylinders below in the correct royal sequence (Zelda's Lullaby), or select the matching melody from the archive dropdown to reveal the hidden stash coordinates.
+        <strong>Scroll Directive:</strong> Listen to the music box mechanism or test the tone cylinders. Input the correct royal 6-note sequence, then select the matching melody from the archive dropdown to unlock the hidden coordinates.
     </div>
 
     <div class="grid">
-        <button onclick="pressCrown(1)" id="crown-1">NOTE 1</button>
-        <button onclick="pressCrown(2)" id="crown-2">NOTE 2</button>
-        <button onclick="pressCrown(3)" id="crown-3">NOTE 3</button>
-        <button onclick="pressCrown(4)" id="crown-4">NOTE 4</button>
-        <button onclick="pressCrown(5)" id="crown-5">NOTE 5</button>
-        <button onclick="pressCrown(6)" id="crown-6">NOTE 6</button>
+        <button onclick="pressNote(1)" id="note-1">NOTE 1</button>
+        <button onclick="pressNote(2)" id="note-2">NOTE 2</button>
+        <button onclick="pressNote(3)" id="note-3">NOTE 3</button>
+        <button onclick="pressNote(4)" id="note-4">NOTE 4</button>
+        <button onclick="pressNote(5)" id="note-5">NOTE 5</button>
+        <button onclick="pressNote(6)" id="note-6">NOTE 6</button>
     </div>
 
     <button class="action-btn" id="play-btn" onclick="playCylinderMelody()">▶ PLAY CYLINDER MELODY</button>
     <button class="action-btn" id="reset-btn" onclick="resetCipher()">↺ RESET CYLINDER</button>
 
     <select id="melody-select" onchange="checkDropdown(this.value)">
-        <option value="">-- Select Hyrule Melody --</option>
+        <option value="">-- Select Hyrule Melody Match --</option>
         <option value="saria">Saria's Song</option>
         <option value="lullaby">Zelda's Lullaby</option>
         <option value="storm">Song of Storms</option>
@@ -150,8 +150,18 @@
     // ==========================================
     const FINAL_COORDINATES = "N 30° [Pending Field Check] W 095° [Pending Field Check]";
 
-    // Zelda's Lullaby Correct Sequence: Note 2, 4, 5, 2, 4, 5
-    const correctSequence = [2, 4, 5, 2, 4, 5];
+    // Frequencies mapped across the 6 buttons (Note 1 to 6)
+    const noteFrequencies = {
+        1: 329.63, // E4
+        2: 392.00, // G4
+        3: 440.00, // A4
+        4: 493.88, // B4
+        5: 587.33, // D5
+        6: 880.00  // A5 (High A)
+    };
+
+    // Zelda's Lullaby exact sequence using the buttons: Note 4 (B4), Note 5 (D5), Note 6 (A5), Note 4, Note 5, Note 6
+    const correctSequence = [4, 5, 6, 4, 5, 6];
     let userSequence = [];
 
     let audioCtx = null;
@@ -162,7 +172,7 @@
         }
     }
 
-    function playTone(frequency, duration = 300) {
+    function playTone(frequency, duration = 350) {
         initAudio();
         if (audioCtx.state === 'suspended') {
             audioCtx.resume();
@@ -183,23 +193,14 @@
         osc.stop(audioCtx.currentTime + (duration / 1000));
     }
 
-    const crownFrequencies = {
-        1: 329.63, // E4
-        2: 392.00, // G4
-        3: 440.00, // A4
-        4: 493.88, // B4
-        5: 587.33, // D5
-        6: 659.25  // E5
-    };
-
-    function pressCrown(crownNum) {
-        playTone(crownFrequencies[crownNum]);
+    function pressNote(noteNum) {
+        playTone(noteFrequencies[noteNum]);
         
-        let btn = document.getElementById(`crown-${crownNum}`);
+        let btn = document.getElementById(`note-${noteNum}`);
         btn.classList.add('active');
         setTimeout(() => btn.classList.remove('active'), 200);
 
-        userSequence.push(crownNum);
+        userSequence.push(noteNum);
 
         if (userSequence.length === correctSequence.length) {
             let matches = userSequence.every((val, idx) => val === correctSequence[idx]);
@@ -207,7 +208,7 @@
             resBox.style.display = 'block';
             if (matches) {
                 resBox.style.color = '#34d399';
-                resBox.innerHTML = `SUCCESS! The Royal Melody resonates!<br>Coordinates: ${FINAL_COORDINATES}`;
+                resBox.innerHTML = `SUCCESS! The Royal Melody resonates! Select it below to view coordinates.`;
             } else {
                 resBox.style.color = '#f87171';
                 resBox.innerHTML = `DISCORDANT NOTE! The music box jams. Try again!`;
@@ -216,13 +217,14 @@
         }
     }
 
+    // Auto-play sequence matching buttons 4, 5, 6, 4, 5, 6 exactly
     const lullabyNotes = [
-        {note: 392.00, dur: 400}, // G4
-        {note: 493.88, dur: 400}, // B4
-        {note: 587.33, dur: 800}, // D5
-        {note: 392.00, dur: 400}, // G4
-        {note: 493.88, dur: 400}, // B4
-        {note: 587.33, dur: 800}  // D5
+        {freq: 493.88, dur: 400}, // Note 4 (B4)
+        {freq: 587.33, dur: 400}, // Note 5 (D5)
+        {freq: 880.00, dur: 800}, // Note 6 (A5)
+        {freq: 493.88, dur: 400}, // Note 4 (B4)
+        {freq: 587.33, dur: 400}, // Note 5 (D5)
+        {freq: 880.00, dur: 800}  // Note 6 (A5)
     ];
 
     function playCylinderMelody() {
@@ -230,7 +232,7 @@
         let delay = 0;
         lullabyNotes.forEach((item) => {
             setTimeout(() => {
-                playTone(item.note, item.dur);
+                playTone(item.freq, item.dur);
             }, delay);
             delay += item.dur + 100;
         });
