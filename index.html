@@ -6,14 +6,13 @@
     <title>The Legend of Zelda: Triforce Music Box Cipher</title>
     <style>
         body {
-            background-color: #06090e;
+            background-color: #0b0e11;
             background-image: 
-                radial-gradient(circle at 50% 50%, #121c26 0%, #06090e 100%),
-                linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
-            background-size: 100% 100%, 20px 20px, 20px 20px;
-            color: #d1e8e2;
-            font-family: 'Courier New', Courier, monospace;
+                radial-gradient(circle at 50% 30%, #1c242d 0%, #080b0e 100%),
+                linear-gradient(rgba(197, 160, 89, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 24px 24px;
+            color: #e6dfd5;
+            font-family: 'Cinzel', 'Times New Roman', serif, Georgia;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -23,58 +22,58 @@
             padding: 12px;
         }
         .container {
-            border: 3px solid #c5a059;
-            background-color: #0e151c;
-            background-image: linear-gradient(145deg, #15202b 0%, #0a0f14 100%);
+            border: 4px solid #c5a059;
+            background-color: #141a21;
+            background-image: linear-gradient(180deg, #1b242e 0%, #0f141a 100%);
             padding: 24px;
             max-width: 420px;
             width: 100%;
-            border-radius: 6px;
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.2), inset 0 0 20px rgba(197, 160, 89, 0.15);
+            border-radius: 8px;
+            box-shadow: 0 0 35px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(197, 160, 89, 0.2);
             text-align: center;
             box-sizing: border-box;
             position: relative;
         }
-        /* Ancient Sheikah / Zonai Slate Corner Glyphs */
+        /* Ancient Zonai / Ruin Corner Carvings */
         .container::before, .container::after {
-            content: '◆';
+            content: '❖';
             position: absolute;
-            color: #00f0ff;
-            font-size: 0.95rem;
-            text-shadow: 0 0 10px #00f0ff;
+            color: #4ade80; /* Zonai Glow Green */
+            font-size: 1rem;
+            text-shadow: 0 0 10px #4ade80;
         }
-        .container::before { top: 10px; left: 10px; }
-        .container::after { top: 10px; right: 10px; }
+        .container::before { top: 12px; left: 12px; }
+        .container::after { top: 12px; right: 12px; }
 
         h1 {
-            color: #00f0ff;
-            font-size: 1.2rem;
-            margin-top: 5px;
+            color: #f3e5ab;
+            font-size: 1.15rem;
+            margin-top: 6px;
             margin-bottom: 6px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(243, 229, 171, 0.3);
         }
         .subtitle {
-            color: #c5a059;
+            color: #4ade80;
             font-style: italic;
             font-size: 0.78rem;
             margin-bottom: 18px;
             letter-spacing: 1px;
-            text-shadow: 0 0 5px rgba(197, 160, 89, 0.4);
+            text-shadow: 0 0 8px rgba(74, 222, 128, 0.4);
         }
         .instructions {
-            background-color: #070b0f;
-            border: 1px solid #1a2c3a;
-            border-left: 4px solid #00f0ff;
+            background-color: #0d1217;
+            border: 1px solid #3a3022;
+            border-left: 4px solid #c5a059;
             padding: 12px;
             font-size: 0.73rem;
             text-align: left;
             margin-bottom: 20px;
-            color: #9ab4cc;
+            color: #b8c2cc;
             line-height: 1.5;
-            border-radius: 2px;
-            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+            font-family: Georgia, serif;
         }
         .grid {
             display: grid;
@@ -83,29 +82,30 @@
             margin-bottom: 18px;
         }
         button.note-btn {
-            background-color: #121c26;
-            border: 2px solid #00f0ff;
-            color: #00f0ff;
+            background-color: #1a222c;
+            border: 2px solid #c5a059;
+            color: #f3e5ab;
             padding: 14px 4px;
             font-weight: bold;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: Georgia, serif;
             cursor: pointer;
             font-size: 0.75rem;
             border-radius: 4px;
-            box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.25), 0 2px 5px rgba(0,0,0,0.4);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.6), 0 2px 4px rgba(0,0,0,0.4);
             transition: all 0.15s ease;
         }
         button.note-btn:active, button.note-btn.active {
-            background-color: #00f0ff;
-            color: #06090e;
-            box-shadow: 0 0 20px #00f0ff, inset 0 0 10px rgba(255,255,255,0.8);
+            background-color: #4ade80;
+            color: #0b0e11;
+            border-color: #4ade80;
+            box-shadow: 0 0 18px #4ade80, inset 0 0 8px rgba(255,255,255,0.8);
             transform: scale(0.96);
         }
         .action-btn {
             width: 100%;
             padding: 12px;
             font-weight: bold;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: Georgia, serif;
             cursor: pointer;
             margin-bottom: 12px;
             font-size: 0.78rem;
@@ -116,77 +116,79 @@
             transition: all 0.2s ease;
         }
         .play-cyl-btn {
-            background-color: #092e2b;
-            border-color: #00f0ff;
-            color: #00f0ff;
-            box-shadow: inset 0 0 12px rgba(0, 240, 255, 0.3);
+            background-color: #10261c;
+            border-color: #4ade80;
+            color: #4ade80;
+            box-shadow: inset 0 0 10px rgba(74, 222, 128, 0.2);
         }
         .play-cyl-btn:hover {
-            background-color: #00f0ff;
-            color: #06090e;
-            box-shadow: 0 0 15px #00f0ff;
+            background-color: #4ade80;
+            color: #0b0e11;
+            box-shadow: 0 0 15px #4ade80;
         }
         .reset-btn {
-            background-color: #2e0c0c;
-            border-color: #ff4d4d;
-            color: #ff4d4d;
-            box-shadow: inset 0 0 12px rgba(255, 77, 77, 0.2);
+            background-color: #2b1212;
+            border-color: #e06666;
+            color: #e06666;
+            box-shadow: inset 0 0 10px rgba(224, 102, 102, 0.2);
         }
         .reset-btn:hover {
-            background-color: #ff4d4d;
-            color: #06090e;
-            box-shadow: 0 0 15px #ff4d4d;
+            background-color: #e06666;
+            color: #0b0e11;
+            box-shadow: 0 0 15px #e06666;
         }
         select {
             width: 100%;
             padding: 12px;
-            background-color: #121c26;
-            color: #00f0ff;
+            background-color: #1a222c;
+            color: #f3e5ab;
             border: 2px solid #c5a059;
             border-radius: 4px;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: Georgia, serif;
             font-size: 0.78rem;
             margin-bottom: 18px;
             cursor: pointer;
             text-align: center;
-            box-shadow: inset 0 0 8px rgba(0,0,0,0.4);
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.6);
         }
         select:focus {
             outline: none;
-            border-color: #00f0ff;
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+            border-color: #4ade80;
+            box-shadow: 0 0 10px rgba(74, 222, 128, 0.4);
         }
         #status-message {
             font-size: 0.74rem;
-            color: #00f0ff;
+            color: #4ade80;
             min-height: 42px;
             line-height: 1.4;
             margin-top: 5px;
-            text-shadow: 0 0 6px rgba(0, 240, 255, 0.4);
+            text-shadow: 0 0 6px rgba(74, 222, 128, 0.3);
+            font-family: Georgia, serif;
         }
         #coords-box {
             display: none;
             margin-top: 16px;
             padding: 14px;
-            background-color: #091c22;
-            color: #e0fbfc;
+            background-color: #122118;
+            color: #f3e5ab;
             font-weight: bold;
-            border: 2px solid #00f0ff;
+            border: 2px solid #4ade80;
             border-radius: 4px;
             font-size: 0.8rem;
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.45), inset 0 0 10px rgba(0, 240, 255, 0.2);
+            box-shadow: 0 0 25px rgba(74, 222, 128, 0.35), inset 0 0 10px rgba(74, 222, 128, 0.2);
             letter-spacing: 1px;
+            font-family: Georgia, serif;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>◈ TRIFORCE MUSIC BOX CIPHER ◈</h1>
-    <div class="subtitle">"Play the sacred notes of the Royal Family..."</div>
+    <h1>❖ ANCIENT RUINS MUSIC BOX ❖</h1>
+    <div class="subtitle">"Unearth the sacred notes of the Royal Family..."</div>
 
     <div class="instructions">
-        <strong>Sheikah Slate Terminal:</strong> Activate the tone cylinders or listen to the mechanical loop. Input the precise 6-note sequence of the royal line, then select the matching archive melody to unlock sanctuary coordinates.
+        <strong>Field Explorer Directive:</strong> Listen to the stone mechanism's full melody loop. Input the precise 6-note sequence (<strong style="color:#f3e5ab;">4 - 5 - 6 - 4 - 5 - 6</strong>), then select the matching archive melody to unearth the hidden cache coordinates.
     </div>
 
     <div class="grid">
@@ -198,29 +200,30 @@
         <button class="note-btn" onclick="handleNotePress(6)">NOTE 6</button>
     </div>
 
-    <button class="action-btn play-cyl-btn" onclick="playCylinderMelody()">▶ ENGAGE CYLINDER MECHANISM</button>
-    <button class="action-btn reset-btn" onclick="resetCylinder()">↺ PURGE MEMORY BUFFER</button>
+    <button class="action-btn play-cyl-btn" onclick="playCylinderMelody()">▶ PLAY 6-NOTE RUIN MECHANISM</button>
+    <button class="action-btn reset-btn" onclick="resetCylinder()">↺ RESET MECHANISM</button>
 
     <select id="melody-dropdown" onchange="checkDropdownSelection()">
-        <option value="">-- SELECT HYRULE ARCHIVE MATCH --</option>
+        <option value="">-- SELECT ANCIENT ARCHIVE MATCH --</option>
         <option value="suns">Sun's Song</option>
         <option value="saria">Saria's Song</option>
         <option value="zelda">Zelda's Lullaby</option>
         <option value="storm">Song of Storms</option>
     </select>
 
-    <div id="status-message">Terminal ready. Awaiting input sequence...</div>
+    <div id="status-message">Mechanism ready. Tap notes or play sequence...</div>
 
     <div id="coords-box">
-        ⚡ SANCTUARY DATA UNLOCKED ⚡<br>
+        ✦ SANCTUARY VAULT UNLOCKED ✦<br>
         N 30° 12.345 W 095° 34.567<br>
-        <span style="font-size:0.68rem; color:#8ab4f8;">(Record coordinates in your travel log, hero!)</span>
+        <span style="font-size:0.68rem; color:#b8c2cc;">(Record your discovery in the field logbook, hero!)</span>
     </div>
 </div>
 
 <script>
     const correctSequence = [4, 5, 6, 4, 5, 6];
     let userSequence = [];
+    let isPlaying = false;
 
     function playTone(noteIndex) {
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -256,6 +259,8 @@
     }
 
     function handleNotePress(noteNum) {
+        if (isPlaying) return; // Prevent clicking while automatic melody plays
+        
         playTone(noteNum);
         userSequence.push(noteNum);
 
@@ -269,37 +274,49 @@
             const isMatch = userSequence.every((val, index) => val === correctSequence[index]);
             if (isMatch) {
                 status.innerHTML = "CORRECT SEQUENCE! The answer is <strong>Zelda's Lullaby</strong>. Select it from the dropdown below to unlock the final coordinates.";
-                document.getElementById('melody-dropdown').style.borderColor = "#00f0ff";
+                document.getElementById('melody-dropdown').style.borderColor = "#4ade80";
             } else {
-                status.innerHTML = "❌ Sequence mismatch. Terminal locked. Hit Purge Memory Buffer and retry.";
+                status.innerHTML = "❌ Incorrect sequence. The mechanism jams. Hit Reset Mechanism and try again.";
             }
         } else if (userSequence.length > 6) {
-            status.innerText = "Buffer overflow! Hit Purge Memory Buffer to reset.";
+            status.innerText = "Too many notes! Hit Reset Mechanism to clear.";
         }
     }
 
     function playCylinderMelody() {
-        const melody = [4, 5, 6, 4, 5, 6];
+        if (isPlaying) return;
+        isPlaying = true;
+        
+        // Completely clear user sequence when playing the demo
+        userSequence = [];
+        document.getElementById('coords-box').style.display = 'none';
+        document.getElementById('melody-dropdown').value = "";
+        document.getElementById('melody-dropdown').style.borderColor = "#c5a059";
+
+        const melody = [4, 5, 6, 4, 5, 6]; // FULL 6-NOTE SEQUENCE FIXED!
         let delay = 0;
         
-        document.getElementById('status-message').innerText = "Streaming cylinder mechanism data...";
+        document.getElementById('status-message').innerText = "Playing full 6-note ruin mechanism melody...";
 
         melody.forEach((note, index) => {
             setTimeout(() => {
                 playTone(note);
+                // Highlight button visually if desired, or just play tone
                 if (index === melody.length - 1) {
                     setTimeout(() => {
-                        document.getElementById('status-message').innerText = "Stream complete. Input the 6-note sequence.";
+                        document.getElementById('status-message').innerText = "Melody complete. Enter your 6-note sequence!";
+                        isPlaying = false;
                     }, 600);
                 }
             }, delay);
-            delay += 600;
+            delay += 650;
         });
     }
 
     function resetCylinder() {
         userSequence = [];
-        document.getElementById('status-message').innerText = "Buffer cleared. Awaiting input sequence...";
+        isPlaying = false;
+        document.getElementById('status-message').innerText = "Mechanism reset. Tap notes or play sequence.";
         document.getElementById('coords-box').style.display = 'none';
         document.getElementById('melody-dropdown').value = "";
         document.getElementById('melody-dropdown').style.borderColor = "#c5a059";
@@ -312,14 +329,14 @@
         const coordsBox = document.getElementById('coords-box');
 
         if (selectedVal === "zelda" && isSequenceCorrect) {
-            status.innerHTML = "SUCCESS! Sheikah resonance achieved with the Triforce!";
+            status.innerHTML = "SUCCESS! The Royal Melody resonates with the ancient stones!";
             coordsBox.style.display = 'block';
         } else if (selectedVal !== "") {
             if (!isSequenceCorrect) {
-                status.innerHTML = "⚠️ Authorization denied. Input the correct 6-note sequence first!";
+                status.innerHTML = "⚠️ You must punch in the correct 6-note sequence first before choosing from the archive!";
                 document.getElementById('melody-dropdown').value = "";
             } else {
-                status.innerHTML = "❌ Archive mismatch. Select another melody vector.";
+                status.innerHTML = "❌ That's not the matching melody for this mechanism. Try another one!";
                 coordsBox.style.display = 'none';
             }
         }
