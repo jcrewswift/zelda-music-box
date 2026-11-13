@@ -3,343 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Legend of Zelda: Ancient Ruins Cipher</title>
+    <title>Ancient Ruins Music Box</title>
     <style>
         body {
-            background-color: #040507;
-            background-image: radial-gradient(circle at 50% 20%, #171c24 0%, #040507 100%);
-            color: #dcd0c0;
-            font-family: 'Cinzel', 'Times New Roman', serif, Georgia;
+            background-color: #1a1918;
+            color: #e6e2d3;
+            font-family: 'Courier New', monospace;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             min-height: 100vh;
             margin: 0;
-            padding: 15px;
         }
-        .monument-panel {
-            border: 6px double #d4af37;
-            background-color: #12161c;
-            background-image: linear-gradient(135deg, #1a212b 0%, #0d1015 100%);
-            padding: 26px;
-            max-width: 440px;
-            width: 100%;
-            border-radius: 4px;
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.9), inset 0 0 30px rgba(212, 175, 55, 0.15);
+        .container {
+            max-width: 450px;
+            width: 90%;
+            background-color: #2c2b2a;
+            border: 4px ridge #8c7853;
+            padding: 20px;
             text-align: center;
-            box-sizing: border-box;
-            position: relative;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.6);
         }
-        /* Ancient Corner Carvings */
-        .monument-panel::before, .monument-panel::after {
-            content: '☩';
-            position: absolute;
-            color: #d4af37;
-            font-size: 1.2rem;
-            text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
-        }
-        .monument-panel::before { top: 10px; left: 10px; }
-        .monument-panel::after { top: 10px; right: 10px; }
-
-        h1 {
-            color: #f4e8c1;
-            font-size: 1.2rem;
-            margin-top: 8px;
-            margin-bottom: 6px;
+        h2 {
+            color: #f0c040;
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+            font-size: 18px;
+            margin-bottom: 5px;
         }
         .subtitle {
-            color: #c29b38;
             font-style: italic;
-            font-size: 0.8rem;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
+            color: #b39b66;
+            font-size: 11px;
+            margin-top: 0;
+            margin-bottom: 15px;
         }
-        .parchment-box {
-            background-color: #090b0e;
-            border: 2px solid #3d321f;
-            border-left: 5px solid #d4af37;
-            padding: 14px;
-            font-size: 0.75rem;
+        .directive-box {
+            background-color: #1f1e1d;
+            border: 1px solid #594b32;
+            padding: 12px;
+            margin-bottom: 15px;
             text-align: left;
-            margin-bottom: 20px;
-            color: #bfa888;
-            line-height: 1.5;
-            border-radius: 2px;
-            font-family: Georgia, serif;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-size: 11px;
+            line-height: 1.4;
+            color: #d9d2be;
         }
-        .stone-grid {
+        .note-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        button.stone-btn {
-            background-color: #1c2430;
-            border: 2px solid #8c733f;
-            color: #f4e8c1;
-            padding: 16px 4px;
-            font-weight: bold;
-            font-family: Georgia, serif;
-            cursor: pointer;
-            font-size: 0.78rem;
-            border-radius: 3px;
-            box-shadow: inset 0 0 12px rgba(0,0,0,0.7), 0 4px 6px rgba(0,0,0,0.5);
-            transition: all 0.1s ease;
-        }
-        button.stone-btn:active, button.stone-btn.active {
-            background-color: #d4af37;
-            color: #0f1015;
-            border-color: #f4e8c1;
-            box-shadow: 0 0 15px #d4af37, inset 0 0 5px rgba(0,0,0,0.5);
-            transform: translateY(2px);
-        }
-        .action-tablet {
-            width: 100%;
-            padding: 13px;
-            font-weight: bold;
-            font-family: Georgia, serif;
-            cursor: pointer;
+            gap: 8px;
             margin-bottom: 12px;
-            font-size: 0.8rem;
-            border-radius: 3px;
-            border: 2px solid;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.4);
         }
-        .play-mech-btn {
-            background-color: #182e22;
-            border-color: #558b2f;
-            color: #a3e635;
+        .note-btn {
+            background-color: #3b3732;
+            border: 2px solid #8c7853;
+            color: #f0c040;
+            padding: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 4px;
         }
-        .play-mech-btn:hover {
-            background-color: #274d38;
+        .note-btn:active {
+            background-color: #8c7853;
+            color: #fff;
         }
-        .reset-mech-btn {
-            background-color: #381515;
-            border-color: #991b1b;
-            color: #fca5a5;
+        .action-btn {
+            width: 100%;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            border: 1px solid #f0c040;
         }
-        .reset-mech-btn:hover {
-            background-color: #581c1c;
+        .play-mech {
+            background-color: #285e38;
+            color: #fff;
+        }
+        .sample-song {
+            background-color: #5c4033;
+            color: #f0c040;
+        }
+        .reset-btn {
+            background-color: #6b2d2d;
+            color: #fff;
         }
         select {
             width: 100%;
-            padding: 13px;
-            background-color: #1c2430;
-            color: #f4e8c1;
-            border: 2px solid #8c733f;
-            border-radius: 3px;
-            font-family: Georgia, serif;
-            font-size: 0.8rem;
-            margin-bottom: 20px;
-            cursor: pointer;
-            text-align: center;
-            box-shadow: inset 0 0 8px rgba(0,0,0,0.6);
-        }
-        select:focus {
-            outline: none;
-            border-color: #d4af37;
+            padding: 8px;
+            background-color: #1f1e1d;
+            color: #f0c040;
+            border: 2px solid #8c7853;
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
         }
         #status-display {
-            font-size: 0.76rem;
-            color: #c29b38;
-            min-height: 45px;
+            font-size: 11px;
+            color: #f0c040;
+            min-height: 35px;
+            margin-top: 10px;
             line-height: 1.4;
-            margin-top: 5px;
-            font-family: Georgia, serif;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
-        }
-        #vault-box {
-            display: none;
-            margin-top: 18px;
-            padding: 16px;
-            background-color: #17261c;
-            color: #f4e8c1;
-            font-weight: bold;
-            border: 2px solid #558b2f;
-            border-radius: 3px;
-            font-size: 0.85rem;
-            box-shadow: 0 0 25px rgba(85, 139, 47, 0.4), inset 0 0 10px rgba(85, 139, 47, 0.2);
-            letter-spacing: 1px;
-            font-family: Georgia, serif;
         }
     </style>
 </head>
 <body>
 
-<div class="monument-panel">
-    <h1>☩ ANCIENT RUINS MUSIC BOX ☩</h1>
-    <div class="subtitle">"Unearth the sacred notes of the Royal Family..."</div>
+<div class="container">
+    <h2>&#9830; ANCIENT RUINS MUSIC BOX &#9830;</h2>
+    <p class="subtitle">"Unearth the sacred notes of the Royal Family..."</p>
 
-    <div class="parchment-box">
-        <strong>Explorer's Directive:</strong> Listen to the stone mechanism's full melody loop. Input the precise 6-note sequence (<strong style="color:#f4e8c1;">4 - 5 - 6 - 4 - 5 - 6</strong>), then select the matching archive melody to unearth the hidden cache coordinates.
+    <div class="directive-box">
+        <strong>Field Explorer Directive:</strong> Listen to the target melody preview, input your 6 notes, verify the sequence, and select the correct archive match to reveal your physical padlock combination!
     </div>
 
-    <div class="stone-grid">
-        <button class="stone-btn" onclick="handleNotePress(1)">SLAB 1</button>
-        <button class="stone-btn" onclick="handleNotePress(2)">SLAB 2</button>
-        <button class="stone-btn" onclick="handleNotePress(3)">SLAB 3</button>
-        <button class="stone-btn" onclick="handleNotePress(4)">SLAB 4</button>
-        <button class="stone-btn" onclick="handleNotePress(5)">SLAB 5</button>
-        <button class="stone-btn" onclick="handleNotePress(6)">SLAB 6</button>
+    <!-- Live Audio Preview Button -->
+    <button class="action-btn sample-song" onclick="playTargetMelodyAudio()">&#9835; PLAY TARGET MELODY PREVIEW</button>
+
+    <div class="note-grid">
+        <button class="note-btn" onclick="addNote('1', 523.25)">NOTE 1</button>
+        <button class="note-btn" onclick="addNote('2', 587.33)">NOTE 2</button>
+        <button class="note-btn" onclick="addNote('3', 659.25)">NOTE 3</button>
+        <button class="note-btn" onclick="addNote('4', 698.46)">NOTE 4</button>
+        <button class="note-btn" onclick="addNote('5', 783.99)">NOTE 5</button>
+        <button class="note-btn" onclick="addNote('6', 880.00)">NOTE 6</button>
     </div>
 
-    <button class="action-tablet play-mech-btn" onclick="playCylinderMelody()">▶ ACTIVATE STONE MECHANISM</button>
-    <button class="action-tablet reset-mech-btn" onclick="resetCylinder()">↺ RESET MECHANISM</button>
+    <button class="action-btn play-mech" onclick="playUserSequence()">&#9658; PLAY INPUTTED MECHANISM</button>
+    <button class="action-btn reset-btn" onclick="resetMechanism()">&#8634; RESET MECHANISM</button>
 
-    <select id="melody-dropdown" onchange="checkDropdownSelection()">
+    <select id="archive-select" onchange="checkArchiveMatch()">
         <option value="">-- SELECT ANCIENT ARCHIVE MATCH --</option>
-        <option value="suns">Sun's Song</option>
-        <option value="saria">Saria's Song</option>
-        <option value="zelda">Zelda's Lullaby</option>
-        <option value="storm">Song of Storms</option>
+        <option value="saria">Saria's Forest Jig (The hyperactive lost-woods dance)</option>
+        <option value="zelda">Zelda's Royal Lullaby (The gentle royal nursery rhyme)</option>
+        <option value="storm">Song of Storms (The frantic rain dance)</option>
+        <option value="time">Song of Time (The ocarina time-warp chant)</option>
     </select>
 
-    <div id="status-display">Monument ready. Tap stone slabs or play sequence...</div>
-
-    <div id="vault-box">
-        ✦ SANCTUARY VAULT UNLOCKED ✦<br>
-        N 30° 12.345 W 095° 34.567<br>
-        <span style="font-size:0.7rem; color:#a3e635;">(Record your discovery in the field logbook, hero!)</span>
-    </div>
+    <div id="status-display">Mechanism ready. Tap notes or play preview...</div>
 </div>
 
 <script>
-    // Persistent AudioContext to prevent note cutoff bugs
-    let audioCtx = null;
+    let currentInput = [];
+    let currentFrequencies = [];
+    const targetSecret = ['4', '5', '6', '4', '5', '6']; 
+    const targetFrequencies = [698.46, 783.99, 880.00, 698.46, 783.99, 880.00]; 
 
-    function initAudio() {
-        if (!audioCtx) {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        if (audioCtx.state === 'suspended') {
-            audioCtx.resume();
-        }
-    }
+    function playTone(freq, duration = 300) {
+        try {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            const ctx = new AudioContext();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
 
-    const correctSequence = [4, 5, 6, 4, 5, 6];
-    let userSequence = [];
-    let isPlaying = false;
+            osc.type = 'triangle';
+            osc.frequency.value = freq;
 
-    function playTone(noteIndex) {
-        initAudio();
-        
-        const osc = audioCtx.createOscillator();
-        const gainNode = audioCtx.createGain();
+            gain.gain.setValueAtTime(0.15, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + (duration / 1000));
 
-        let frequency = 440; 
-        let duration = 0.5;
+            osc.connect(gain);
+            gain.connect(ctx.destination);
 
-        if (noteIndex === 1) frequency = 392.00; // G4
-        if (noteIndex === 2) frequency = 440.00; // A4
-        if (noteIndex === 3) frequency = 493.88; // B4
-        if (noteIndex === 4) {
-            frequency = 587.33; // D5
-        } else if (noteIndex === 5) {
-            frequency = 523.25; // C5
-        } else if (noteIndex === 6) {
-            frequency = 293.66; // D4 - Deep, resonant low boom decay
-            duration = 1.1;     
-        }
-
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(frequency, audioCtx.currentTime);
-
-        gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
-
-        osc.connect(gainNode);
-        gainNode.connect(audioCtx.destination);
-
-        osc.start();
-        osc.stop(audioCtx.currentTime + duration);
-    }
-
-    function handleNotePress(noteNum) {
-        if (isPlaying) return; 
-        
-        playTone(noteNum);
-        userSequence.push(noteNum);
-
-        const status = document.getElementById('status-display');
-        
-        if (userSequence.length <= 6) {
-            status.innerText = `Sequence input: ${userSequence.join(' - ')}`;
-        }
-
-        if (userSequence.length === 6) {
-            const isMatch = userSequence.every((val, index) => val === correctSequence[index]);
-            if (isMatch) {
-                status.innerHTML = "CORRECT SEQUENCE! The answer is <strong>Zelda's Lullaby</strong>. Select it from the dropdown below to unlock the final coordinates.";
-                document.getElementById('melody-dropdown').style.borderColor = "#558b2f";
-            } else {
-                status.innerHTML = "❌ Incorrect sequence. The stone mechanism jams. Hit Reset Mechanism and try again.";
-            }
-        } else if (userSequence.length > 6) {
-            status.innerText = "Too many inputs! Hit Reset Mechanism to clear.";
+            osc.start();
+            osc.stop(ctx.currentTime + (duration / 1000));
+        } catch (e) {
+            console.log("Audio context blocked");
         }
     }
 
-    function playCylinderMelody() {
-        if (isPlaying) return;
-        isPlaying = true;
-        
-        userSequence = [];
-        document.getElementById('vault-box').style.display = 'none';
-        document.getElementById('melody-dropdown').value = "";
-        document.getElementById('melody-dropdown').style.borderColor = "#8c733f";
+    function addNote(noteNum, freq) {
+        if (currentInput.length < 6) {
+            currentInput.push(noteNum);
+            currentFrequencies.push(freq);
+            playTone(freq, 250);
+            document.getElementById('status-display').innerText = "Sequence: " + currentInput.join(' - ');
+        }
+    }
 
-        const melody = [4, 5, 6, 4, 5, 6]; 
-        let delay = 0;
-        
-        document.getElementById('status-display').innerText = "Activating full 6-note ancient ruin mechanism...";
+    function resetMechanism() {
+        currentInput = [];
+        currentFrequencies = [];
+        document.getElementById('status-display').innerText = "Mechanism reset. Ready for input...";
+        document.getElementById('archive-select').value = "";
+    }
 
-        melody.forEach((note, index) => {
-            setTimeout(() => {
-                playTone(note);
-                if (index === melody.length - 1) {
-                    setTimeout(() => {
-                        document.getElementById('status-display').innerText = "Mechanism complete. Enter your 6-note sequence using the stone slabs!";
-                        isPlaying = false;
-                    }, 600);
-                }
-            }, delay);
-            delay += 650;
+    function playUserSequence() {
+        if (currentInput.length === 0) {
+            document.getElementById('status-display').innerText = "Error: No notes entered yet!";
+            return;
+        }
+        
+        currentFrequencies.forEach((freq, index) => {
+            setTimeout(() => { playTone(freq, 300); }, index * 350);
         });
-    }
 
-    function resetCylinder() {
-        userSequence = [];
-        isPlaying = false;
-        document.getElementById('status-display').innerText = "Mechanism reset. Tap stone slabs or activate mechanism.";
-        document.getElementById('vault-box').style.display = 'none';
-        document.getElementById('melody-dropdown').value = "";
-        document.getElementById('melody-dropdown').style.borderColor = "#8c733f";
-    }
-
-    function checkDropdownSelection() {
-        const selectedVal = document.getElementById('melody-dropdown').value;
-        const isSequenceCorrect = userSequence.length === 6 && userSequence.every((val, index) => val === correctSequence[index]);
-        const status = document.getElementById('status-display');
-        const vaultBox = document.getElementById('vault-box');
-
-        if (selectedVal === "zelda" && isSequenceCorrect) {
-            status.innerHTML = "SUCCESS! The Royal Melody resonates with the ancient monument!";
-            vaultBox.style.display = 'block';
-        } else if (selectedVal !== "") {
-            if (!isSequenceCorrect) {
-                status.innerHTML = "⚠️ You must punch in the correct 6-note sequence first before choosing from the archive!";
-                document.getElementById('melody-dropdown').value = "";
+        let isCorrect = currentInput.length === targetSecret.length && currentInput.every((val, index) => val === targetSecret[index]);
+        
+        setTimeout(() => {
+            if (isCorrect) {
+                document.getElementById('status-display').innerText = "SUCCESS! Mechanism resonates! Now select the correct archive match below.";
             } else {
-                status.innerHTML = "❌ That's not the matching melody for this mechanism. Try another one!";
-                vaultBox.style.display = 'none';
+                document.getElementById('status-display').innerText = "Discordant sound... Try resetting!";
             }
+        }, currentFrequencies.length * 350 + 100);
+    }
+
+    function playTargetMelodyAudio() {
+        document.getElementById('status-display').innerText = "Playing target melody preview...";
+        targetFrequencies.forEach((freq, index) => {
+            setTimeout(() => { playTone(freq, 350); }, index * 400);
+        });
+        setTimeout(() => {
+            document.getElementById('status-display').innerText = "Preview finished! Match the tune in the dropdown.";
+        }, targetFrequencies.length * 400 + 200);
+    }
+
+    function checkArchiveMatch() {
+        let selection = document.getElementById('archive-select').value;
+        let isCorrect = currentInput.length === targetSecret.length && currentInput.every((val, index) => val === targetSecret[index]);
+
+        if (!isCorrect) {
+            if (selection !== "") {
+                document.getElementById('status-display').innerText = "Verify the 6-note sequence first!";
+                document.getElementById('archive-select').value = "";
+            }
+            return;
+        }
+
+        if (selection === "zelda") {
+            // REVEALS THE LOCK COMBINATION UPON SUCCESS
+            document.getElementById('status-display').innerHTML = "<strong style='color:#76ff03; font-size: 12px;'>ARCHIVE VERIFIED! PADLOCK COMBO: [ 4 - 5 - 6 ]</strong>";
+        } else if (selection !== "") {
+            document.getElementById('status-display').innerText = "Incorrect archive match. Stones remain locked.";
         }
     }
 </script>
