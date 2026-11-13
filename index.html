@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ancient Temple Music Box - Zelda Cipher</title>
+    <title>Legend of Zelda: Ancient Music Box</title>
     <style>
         body {
-            background-color: #1a2218;
+            background-color: #121c14;
             color: #d4c5a9;
             font-family: 'Courier New', monospace;
             display: flex;
@@ -19,31 +19,32 @@
         .container {
             max-width: 460px;
             width: 100%;
-            background-color: #2b3528;
-            border: 5px ridge #8c7853;
+            background-color: #1b2618;
+            border: 4px ridge #8c7853;
+            outline: 2px solid #00f0ff;
             padding: 20px;
             text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.25), 0 10px 25px rgba(0,0,0,0.8);
             border-radius: 4px;
         }
         h2 {
             color: #f3c653;
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-size: 19px;
+            font-size: 18px;
             margin-bottom: 5px;
             text-shadow: 2px 2px #000;
         }
         .subtitle {
             font-style: italic;
-            color: #8fa876;
+            color: #00f0ff;
             font-size: 11px;
             margin-top: 0;
             margin-bottom: 15px;
         }
         .directive-box {
-            background-color: #1f271d;
-            border: 2px solid #5d6d4e;
+            background-color: #151e13;
+            border: 2px solid #0284c7;
             padding: 12px;
             margin-bottom: 15px;
             text-align: left;
@@ -59,7 +60,7 @@
             margin-bottom: 12px;
         }
         .note-btn {
-            background-color: #384633;
+            background-color: #273623;
             border: 2px solid #8c7853;
             color: #f3c653;
             padding: 12px 0;
@@ -68,11 +69,10 @@
             font-size: 13px;
             cursor: pointer;
             border-radius: 4px;
-            box-shadow: inset 0 2px 4px rgba(255,255,255,0.1);
         }
         .note-btn:active {
-            background-color: #8c7853;
-            color: #fff;
+            background-color: #00f0ff;
+            color: #121c14;
         }
         .action-btn {
             width: 100%;
@@ -86,35 +86,55 @@
             border: 2px solid #8c7853;
         }
         .play-mech {
-            background-color: #3b5332;
+            background-color: #1b4d3e;
             color: #fff;
-            border-color: #5d6d4e;
+            border-color: #00f0ff;
         }
         .sample-song {
-            background-color: #4a3b2c;
+            background-color: #3b2d1f;
             color: #f3c653;
+            border-color: #f3c653;
+        }
+        .sample-option-btn {
+            background-color: #273623;
+            color: #00f0ff;
+            border: 1px solid #0284c7;
+            padding: 6px;
+            font-size: 10px;
+            font-family: 'Courier New', monospace;
+            cursor: pointer;
+            border-radius: 3px;
+            margin-top: 4px;
+            width: 100%;
         }
         .reset-btn {
-            background-color: #5a2e2e;
+            background-color: #4a2222;
             color: #fff;
-            border-color: #8c4a4a;
+            border-color: #f87171;
         }
         select {
             width: 100%;
             padding: 9px;
-            background-color: #1f271d;
+            background-color: #151e13;
             color: #f3c653;
             border: 2px solid #8c7853;
             font-family: 'Courier New', monospace;
             font-size: 11px;
             margin-top: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
             border-radius: 4px;
+        }
+        .dropdown-container {
+            background-color: #151e13;
+            border: 1px solid #5d6d4e;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 3px;
         }
         #status-display {
             font-size: 12px;
-            color: #f3c653;
-            min-height: 40px;
+            color: #76ff03;
+            min-height: 45px;
             margin-top: 10px;
             line-height: 1.4;
             font-weight: bold;
@@ -124,15 +144,15 @@
 <body>
 
 <div class="container">
-    <h2>&#9830; TEMPLE MUSIC BOX RELIC &#9830;</h2>
+    <h2>&#9830; LEGEND OF ZELDA: ANCIENT MUSIC BOX &#9830;</h2>
     <p class="subtitle">"Unearth the sacred royal melodies of the ancient realm..."</p>
 
     <div class="directive-box">
-        <strong>Explorer Field Notes:</strong> Listen to the target temple melody preview below to learn the tune. Tap your 6 notes into the mechanism, verify the resonance, and select the matching archive song to unseal the padlock combination (38-04-28).
+        <strong>Field Terminal Notes:</strong> Listen to the target melody preview. Input your 6 notes, test your sequence, and if unsure which song is which, use the audio sample buttons below each dropdown choice to compare melodies and unseal your combination (38-04-28).
     </div>
 
     <!-- Live Audio Preview Button -->
-    <button class="action-btn sample-song" onclick="playTargetMelodyAudio()">&#9835; LISTEN TO TARGET TEMPLE MELODY</button>
+    <button class="action-btn sample-song" onclick="playTargetMelodyAudio()">&#9835; LISTEN TO TARGET FIELD MELODY</button>
 
     <div class="note-grid">
         <button class="note-btn" onclick="addNote('1', 523.25)">NOTE 1</button>
@@ -146,15 +166,23 @@
     <button class="action-btn play-mech" onclick="playUserSequence()">&#9658; TEST MECHANISM SEQUENCE</button>
     <button class="action-btn reset-btn" onclick="resetMechanism()">&#8634; RESET MECHANISM</button>
 
-    <select id="archive-select" onchange="checkArchiveMatch()">
-        <option value="">-- SELECT MATCHING ARCHIVE MELODY --</option>
-        <option value="saria">Saria's Forest Jig (Upbeat, bouncy lost-woods rhythm)</option>
-        <option value="zelda">Zelda's Royal Lullaby (Gentle, cascading 3-step royal nursery theme)</option>
-        <option value="storm">Song of Storms (Frantic, swirling windmill rain rhythm)</option>
-        <option value="time">Song of Time (Deep, echoing ocarina temporal chant)</option>
-    </select>
+    <!-- Dropdown with individual preview buttons for foolproof matching -->
+    <div class="dropdown-container">
+        <select id="archive-select" onchange="checkArchiveMatch()">
+            <option value="">-- SELECT MATCHING ARCHIVE MELODY --</option>
+            <option value="saria">Saria's Forest Jig</option>
+            <option value="zelda">Zelda's Royal Lullaby</option>
+            <option value="storm">Song of Storms</option>
+            <option value="time">Song of Time</option>
+        </select>
+        <div style="font-size: 10px; color: #a3e635; margin-bottom: 6px;">Need to test what each song sounds like? Tap below:</div>
+        <button class="sample-option-btn" onclick="playSpecificSong('saria')">&#9835; Preview Saria's Jig</button>
+        <button class="sample-option-btn" onclick="playSpecificSong('zelda')">&#9835; Preview Zelda's Lullaby (Target)</button>
+        <button class="sample-option-btn" onclick="playSpecificSong('storm')">&#9835; Preview Song of Storms</button>
+        <button class="sample-option-btn" onclick="playSpecificSong('time')">&#9835; Preview Song of Time</button>
+    </div>
 
-    <div id="status-display">Temple mechanism dormant. Ready for notes or preview...</div>
+    <div id="status-display">Mechanism dormant. Ready for input...</div>
 </div>
 
 <script>
@@ -163,22 +191,37 @@
     const targetSecret = ['4', '5', '6', '4', '5', '6']; 
     const targetFrequencies = [698.46, 783.99, 880.00, 698.46, 783.99, 880.00]; 
 
+    // Melody maps for each choice so players can test them all
+    const songMelodies = {
+        saria: [880, 783, 880, 783, 659, 587],
+        zelda: [698.46, 783.99, 880.00, 698.46, 783.99, 880.00],
+        storm: [587, 659, 880, 587, 659, 880],
+        time:  [659, 523, 587, 659, 523, 587]
+    };
+
+    let audioCtx = null;
+
+    function getAudioContext() {
+        if (!audioCtx) {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            audioCtx = new AudioContext();
+        }
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+        return audioCtx;
+    }
+
     function playTone(freq, duration = 350) {
         try {
-            const AudioContext = window.AudioContext || window.webkitAudioContext;
-            const ctx = new AudioContext();
-            
-            if (ctx.state === 'suspended') {
-                ctx.resume();
-            }
-
+            const ctx = getAudioContext();
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
 
             osc.type = 'triangle';
-            osc.frequency.value = freq;
+            osc.frequency.setValueAtTime(freq, ctx.currentTime);
 
-            gain.gain.setValueAtTime(0.4, ctx.currentTime);
+            gain.gain.setValueAtTime(0.5, ctx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + (duration / 1000));
 
             osc.connect(gain);
@@ -187,7 +230,7 @@
             osc.start();
             osc.stop(ctx.currentTime + (duration / 1000));
         } catch (e) {
-            console.log("Audio error: ", e);
+            console.log("Audio play error: ", e);
         }
     }
 
@@ -213,7 +256,7 @@
             return;
         }
         
-        document.getElementById('status-display').innerText = "Playing your sequence...";
+        document.getElementById('status-display').innerText = "Playing sequence...";
         currentFrequencies.forEach((freq, index) => {
             setTimeout(() => { playTone(freq, 350); }, index * 400);
         });
@@ -224,19 +267,30 @@
             if (isCorrect) {
                 document.getElementById('status-display').innerText = "RESONANCE ACHIEVED! Now select the correct archive melody below.";
             } else {
-                document.getElementById('status-display').innerText = "Discordant sound... That is incorrect. Reset and try again.";
+                document.getElementById('status-display').innerText = "Discordant sound... Incorrect sequence. Reset and retry.";
             }
         }, currentFrequencies.length * 400 + 200);
     }
 
     function playTargetMelodyAudio() {
-        document.getElementById('status-display').innerText = "Playing target temple melody preview...";
+        document.getElementById('status-display').innerText = "Playing target melody preview...";
         targetFrequencies.forEach((freq, index) => {
             setTimeout(() => { playTone(freq, 400); }, index * 450);
         });
         setTimeout(() => {
-            document.getElementById('status-display').innerText = "Preview complete. Match this rhythm in the dropdown!";
+            document.getElementById('status-display').innerText = "Preview complete. Compare with the song sample buttons below!";
         }, targetFrequencies.length * 450 + 200);
+    }
+
+    function playSpecificSong(songKey) {
+        let notes = songMelodies[songKey];
+        document.getElementById('status-display').innerText = "Playing sample for: " + songKey.toUpperCase() + "...";
+        notes.forEach((freq, index) => {
+            setTimeout(() => { playTone(freq, 350); }, index * 400);
+        });
+        setTimeout(() => {
+            document.getElementById('status-display').innerText = "Sample finished. Does this match what you heard?";
+        }, notes.length * 400 + 200);
     }
 
     function checkArchiveMatch() {
@@ -252,8 +306,7 @@
         }
 
         if (selection === "zelda") {
-            // REVEALS THE EXACT LOCK COMBINATION (38-04-28)
-            document.getElementById('status-display').innerHTML = "<span style='color:#76ff03; font-size: 14px;'>ARCHIVE VERIFIED! PADLOCK COMBINATION: [ 38 - 04 - 28 ]</span>";
+            document.getElementById('status-display').innerHTML = "<span style='color:#00f0ff; font-size: 13px;'>ARCHIVE VERIFIED! PADLOCK COMBINATION: [ 38 - 04 - 28 ]</span>";
         } else if (selection !== "") {
             document.getElementById('status-display').innerText = "Incorrect archive match. The ancient temple remains locked.";
         }
